@@ -52,10 +52,10 @@ To develop, run `npm run dev:server` and `npm run dev` in separate terminals. Vi
 
 ```sh
 npm run build:demo
-npx vite preview --host 127.0.0.1 --port 4173 --outDir dist-recorded
+npx vite preview --host 127.0.0.1 --port 4173 --outDir out
 ```
 
-Deploy `dist-recorded/` to static hosting. `npm run build` produces the **local** UI in `dist/`; do not deploy that as if it provides hosted inference.
+Deploy `out/` to static hosting. `npm run build` produces the **local** UI in `dist/`; do not deploy that as if it provides hosted inference.
 
 `npm run record:demo` calls your real local model three times and replaces `src/demo/recorded.json` with new fictional examples, including model and generation timestamps. It records duration measurements under ignored `artifacts/`. It does not manufacture responses. The committed examples took **5,528 ms, 7,171 ms and 7,998 ms** on the development machine; these are observations, not performance promises.
 

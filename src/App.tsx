@@ -29,7 +29,7 @@ export default function App(){
     controller.current?.abort();setBusy(false);setSelected(entry?.id||null);setTitle(entry?.title||'');setText(entry?.original||'');setEditing(!entry&&!recorded);setError('');setNotice('');setCompare(false);
   }
   async function save(){try{if(!text.trim()){setError('Leave a few words on the page first.');return;}
-    const now=new Date().toISOString();const saved=await store.saveEntry({...current,id:current?.id||crypto.randomUUID(),title:title.trim()||'An untitled day',original:text,revision:current?.revision||1,createdAt:current?.createdAt||now,updatedAt:now});
+    const now=new Date().toISOString();const saved=await store.saveEntry({...current,id:current?.id||crypto.randomUUID(),title:title.trim()||'An untitled day',original:text,revision:current?.revision||1,createdAt:current?.createdAt||now,updatedAt:now},!current);
     await refresh();setSelected(saved.id);setTitle(saved.title);setEditing(false);setError('');setNotice('Your words are safe on this device.');
   }catch(e){setError(e instanceof Error?e.message:'The page could not be saved.')}}
   async function passNight(){if(!current||busy)return;setBusy(true);setError('');setNotice('');

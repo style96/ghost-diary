@@ -1,26 +1,45 @@
-import {openDB} from 'idb';
+import {openDB,type DBSchema,type IDBPTransaction} from 'idb';
 import {entrySchema,hauntingSchema,type Entry,type Haunting} from '../domain/diary';
 import {validateEntries} from '../domain/backup';
 import {applyHaunting} from '../domain/haunting';
-const db=()=>openDB('ghost-diary',1,{upgrade(db){db.createObjectStore('entries',{keyPath:'id'})}});
-export async function listEntries():Promise<Entry[]>{return (await (await db()).getAll('entries')).sort((a:Entry,b:Entry)=>b.createdAt.localeCompare(a.createdAt))}
-export async function saveEntry(input:Entry):Promise<Entry>{
-  const entry=entrySchema.parse(input),database=await db(),tx=database.transaction('entries','readwrite');
-  const current:Entry|undefined=await tx.store.get(entry.id);
-  if(current&&current.revision!==entry.revision){await tx.done;throw new Error('This entry changed in another tab. Reopen it before saving.');}
-  const saved={...entry,revision:current?current.revision+1:1,updatedAt:new Date().toISOString()};
-  if(current&&current.original!==saved.original)delete saved.haunting;
-  await tx.store.put(saved);await tx.done;return saved;
+interface DiaryDB extends DBSchema{entries:{key:string;value:Entry};meta:{key:string;value:number}}
+const db=()=>openDB<DiaryDB>('ghost-diary',2,{upgrade(db){if(!db.objectStoreNames.contains('entries'))db.createObjectStore('entries',{keyPath:'id'});if(!db.objectStoreNames.contains('meta'))db.createObjectStore('meta')},blocking(_old,_next,event){(event.target as IDBDatabase).close()}});
+type WriteTransaction=IDBPTransaction<DiaryDB,['entries','meta'],'readwrite'>;
+async function write<T>(action:(tx:WriteTransaction)=>Promise<T>):Promise<T>{
+  const database=await db(),tx=database.transaction(['entries','meta'],'readwrite');
+  const done=tx.done;void done.catch(()=>{});
+  try{const result=await action(tx);await done;return result}
+  catch(error){try{tx.abort()}catch{}await done.catch(()=>{});throw error}
 }
-export async function deleteEntry(id:string){await (await db()).delete('entries',id)}
+export async function listEntries():Promise<Entry[]>{return (await (await db()).getAll('entries')).sort((a,b)=>b.createdAt.localeCompare(a.createdAt))}
+export async function saveEntry(input:Entry,create=false):Promise<Entry>{
+  const entry=entrySchema.parse(input);
+  return write(async tx=>{
+  const entries=tx.objectStore('entries'),meta=tx.objectStore('meta'),current=await entries.get(entry.id);
+  if((create&&current)||(!create&&!current)||(current&&current.revision!==entry.revision))throw new Error('This entry changed or was removed in another tab. Reopen it before saving.');
+  const revision=Math.max((await meta.get('revision'))||Date.now(),entry.revision)+1;
+  const saved={...entry,revision,updatedAt:new Date().toISOString()};
+  if(current&&current.original!==saved.original)delete saved.haunting;
+  await entries.put(saved);await meta.put(revision,'revision');return saved;
+  });
+}
+export async function deleteEntry(id:string):Promise<void>{await write(async tx=>{await tx.objectStore('entries').delete(id)})}
 export async function applyIfCurrent(id:string,revision:number,input:Haunting):Promise<boolean>{
-  const haunting=hauntingSchema.parse(input),database=await db(),tx=database.transaction('entries','readwrite');
-  const current:Entry|undefined=await tx.store.get(id);
-  if(!current||current.revision!==revision){await tx.done;return false;}
-  if(applyHaunting(current.original,haunting.edits)!==haunting.text){await tx.done;throw new Error('Invalid ghost intervention.');}
-  await tx.store.put({...current,haunting,revision:current.revision+1});await tx.done;return true;
+  const haunting=hauntingSchema.parse(input);
+  return write(async tx=>{
+  const entries=tx.objectStore('entries'),meta=tx.objectStore('meta'),current=await entries.get(id);
+  if(!current||current.revision!==revision)return false;
+  if(applyHaunting(current.original,haunting.edits)!==haunting.text)throw new Error('Invalid ghost intervention.');
+  const next=Math.max((await meta.get('revision'))||Date.now(),current.revision)+1;
+  await entries.put({...current,haunting,revision:next});await meta.put(next,'revision');return true;
+  });
 }
 export async function importEntries(input:Entry[]):Promise<void>{
-  const entries=validateEntries(input),database=await db(),tx=database.transaction('entries','readwrite');
-  await tx.store.clear();for(const entry of entries)await tx.store.put(entry);await tx.done;
+  const entries=validateEntries(input);
+  await write(async tx=>{
+  const store=tx.objectStore('entries'),meta=tx.objectStore('meta');
+  const existing:Entry[]=await store.getAll();
+  let revision=Math.max((await meta.get('revision'))||Date.now(),...existing.map(e=>e.revision),...entries.map(e=>e.revision))+1;
+  await store.clear();for(const entry of entries)await store.put({...entry,revision:++revision});await meta.put(revision,'revision');
+  });
 }

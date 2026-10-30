@@ -7,3 +7,4 @@ dist-recorded/
 .env.*
 !.env.example
 artifacts/
+out/
