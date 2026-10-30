@@ -1,6 +1,6 @@
 # Ghost Diary Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Deliver a local Gemma-powered haunted diary and an honestly labeled public recorded-example demo within one day.
 
@@ -51,13 +51,13 @@ Builder constants: 12,000 characters per entry, 24,000 characters combined model
 
 **Interfaces:** Produce `Entry`, `Edit`, `Haunting` and `applyHaunting` as above. All edit anchors resolve against the unchanged original; apply valid disjoint operations in descending position order. Never accept an empty or unchanged final result.
 
-- [ ] Read execution, worktree, TDD and relevant website skills before implementation; preserve the approved scope. Use existing app-managed isolation if present; avoid disturbing the user's checkout.
-- [ ] Check official Gemma/Ollama model tags and install a small supported Gemma variant (initial candidate `gemma3:1b`, verify availability). Download may require sandbox escalation. Run one short fictional structured-output request. Record exact tag, elapsed time and usable output. If inadequate, test a larger variant only if available hardware/time permit; report a blocker if no live model works.
-- [ ] Create minimal package/config files for React, Vite, TypeScript, tsx, Vitest and Zod; pin resolved dependencies through the lockfile. Add scripts `dev`, `dev:server`, `build`, `start`, `test`, `typecheck`, `record:demo`.
-- [ ] Write tests asserting one valid replacement and insertion preserve all other text; duplicate anchors, missing anchors, overlapping edits, more than two edits, oversized new text and unchanged output throw. Include anchors containing HTML, Unicode and regex characters as literal text.
-- [ ] Run `npm test -- tests/haunting.test.ts`; confirm failure before implementation.
-- [ ] Implement types and pure validator/transformer; validate lengths and operation count with Zod, then resolve positions against the original. Run the same test command and confirm PASS.
-- [ ] Commit task files with `feat: validate ghost interventions without losing original text`.
+- [x] Read execution, worktree, TDD and relevant website skills before implementation; preserve the approved scope. Use existing app-managed isolation if present; avoid disturbing the user's checkout.
+- [x] Check official Gemma/Ollama model tags and install a small supported Gemma variant (initial candidate `gemma3:1b`, verify availability). Download may require sandbox escalation. Run one short fictional structured-output request. Record exact tag, elapsed time and usable output. If inadequate, test a larger variant only if available hardware/time permit; report a blocker if no live model works.
+- [x] Create minimal package/config files for React, Vite, TypeScript, tsx, Vitest and Zod; pin resolved dependencies through the lockfile. Add scripts `dev`, `dev:server`, `build`, `start`, `test`, `typecheck`, `record:demo`.
+- [x] Write tests asserting one valid replacement and insertion preserve all other text; duplicate anchors, missing anchors, overlapping edits, more than two edits, oversized new text and unchanged output throw. Include anchors containing HTML, Unicode and regex characters as literal text.
+- [x] Run `npm test -- tests/haunting.test.ts`; confirm failure before implementation.
+- [x] Implement types and pure validator/transformer; validate lengths and operation count with Zod, then resolve positions against the original. Run the same test command and confirm PASS.
+- [x] Commit task files with `feat: validate ghost interventions without losing original text`.
 
 ### Task 2: Local inference boundary
 
@@ -65,13 +65,13 @@ Builder constants: 12,000 characters per entry, 24,000 characters combined model
 
 **Interfaces:** Consume Task 1 types/validator. `GenerateInput {entry:{id,revision,original},history:string[]}`. Return `{haunting:Haunting}` from POST `/api/haunt`; GET `/api/status` returns `{available:boolean,model:string,message?:string}` without exposing diary content. Errors return `{error:string}`.
 
-- [ ] Write HTTP tests with a mocked Ollama transport: valid input returns validated edits; foreign Origin or Host, oversized body and invalid input fail; malformed model output, unavailable Ollama and timeout return recoverable errors. Verify history is bounded and a supplied destination URL cannot change the fixed Ollama URL.
-- [ ] Run `npm test -- tests/server.test.ts`; confirm FAIL.
-- [ ] Implement HTTP server factory separable from listener. Validate loopback Host and exact local Origin; reject mutating requests without the expected JSON content type. Do not enable permissive CORS. Proxy development through Vite with matching origin configuration.
-- [ ] Implement fixed `http://127.0.0.1:11434/api/chat` calls with local model from `GHOST_MODEL`, structured schema, non-streaming output and bounded cancellation. Prompt for subtle edits using concrete diary details, preserve language, treat diary as quoted data, and avoid harmful instructions. Apply Task 1 validation before returning. Never log prompt or output text.
-- [ ] Serve built files safely from `dist/` in local mode; exclude API paths from SPA fallback. Add status handling for missing chosen model and a user-facing setup instruction.
-- [ ] Run server tests and `npm run typecheck`; confirm PASS. Perform one real API generation using fictional text.
-- [ ] Commit with `feat: connect the local ghost to Ollama`.
+- [x] Write HTTP tests with a mocked Ollama transport: valid input returns validated edits; foreign Origin or Host, oversized body and invalid input fail; malformed model output, unavailable Ollama and timeout return recoverable errors. Verify history is bounded and a supplied destination URL cannot change the fixed Ollama URL.
+- [x] Run `npm test -- tests/server.test.ts`; confirm FAIL.
+- [x] Implement HTTP server factory separable from listener. Validate loopback Host and exact local Origin; reject mutating requests without the expected JSON content type. Do not enable permissive CORS. Proxy development through Vite with matching origin configuration.
+- [x] Implement fixed `http://127.0.0.1:11434/api/chat` calls with local model from `GHOST_MODEL`, structured schema, non-streaming output and bounded cancellation. Prompt for subtle edits using concrete diary details, preserve language, treat diary as quoted data, and avoid harmful instructions. Apply Task 1 validation before returning. Never log prompt or output text.
+- [x] Serve built files safely from `dist/` in local mode; exclude API paths from SPA fallback. Add status handling for missing chosen model and a user-facing setup instruction.
+- [x] Run server tests and `npm run typecheck`; confirm PASS. Perform one real API generation using fictional text.
+- [x] Commit with `feat: connect the local ghost to Ollama`.
 
 ### Task 3: Persistent local diary and revision protection
 
@@ -79,11 +79,11 @@ Builder constants: 12,000 characters per entry, 24,000 characters combined model
 
 **Interfaces:** Produce storage operations from the file map. Saves increment `revision` and clear haunting when original changes; `applyIfCurrent` is transactional, returns false if entry disappeared or revision changed. Import validates all entries before one replacing transaction.
 
-- [ ] Write tests using fake-indexeddb: save/reopen, delete, haunt and restore retain original, stale results after edit/delete are rejected. Verify failed import or aborted storage transaction leaves previous entries intact. Backup round-trip preserves Unicode, rejects wrong version, duplicate IDs, malformed haunting and oversized text.
-- [ ] Run `npm test -- tests/storage.test.ts tests/backup.test.ts`; confirm FAIL.
-- [ ] Implement the store and versioned backup functions. Store generated output only after revision check and validate persisted haunting against original on import. Expose storage errors rather than reporting successful saves.
-- [ ] Run the storage/backup tests and typecheck; confirm PASS.
-- [ ] Commit with `feat: persist diary originals and guard against stale hauntings`.
+- [x] Write tests using fake-indexeddb: save/reopen, delete, haunt and restore retain original, stale results after edit/delete are rejected. Verify failed import or aborted storage transaction leaves previous entries intact. Backup round-trip preserves Unicode, rejects wrong version, duplicate IDs, malformed haunting and oversized text.
+- [x] Run `npm test -- tests/storage.test.ts tests/backup.test.ts`; confirm FAIL.
+- [x] Implement the store and versioned backup functions. Store generated output only after revision check and validate persisted haunting against original on import. Expose storage errors rather than reporting successful saves.
+- [x] Run the storage/backup tests and typecheck; confirm PASS.
+- [x] Commit with `feat: persist diary originals and guard against stale hauntings`.
 
 ### Task 4: Diary experience and honest recorded demo
 
@@ -91,12 +91,12 @@ Builder constants: 12,000 characters per entry, 24,000 characters combined model
 
 **Interfaces:** Consume storage and API interfaces unchanged. Local mode supports write/save, select/delete, generate/retry, compare/restore and export/import. Public mode reads fixtures only and exposes no personal editor or local service calls.
 
-- [ ] Build a cohesive responsive notebook: dark surroundings, warm paper/ink, restrained eerie accents, clear save state and ghost activity. Provide keyboard navigation, labeled controls, readable contrast and reduced-motion behavior. Use CSS and inline vector decoration; no asset-generation dependency.
-- [ ] Wire local flow. Prevent double requests, cancel on navigation as appropriate and use revision guard for persistence. Never hide an unsaved edit, destructive delete or import replacement without confirmation. Render every diary string as plain React text.
-- [ ] Generate at least two short fictional examples using the actual local Gemma. Save originals, edits, exact model and generation timestamp. Do not fabricate provenance or pretend recorded output is live.
-- [ ] Add recorded mode with persistent `Recorded Gemma demo — no live inference` label, selectable examples, night reveal and comparison. Link source/setup and show an explanation of local privacy/offline prerequisites. Keep local status widgets out of recorded mode.
-- [ ] Verify both production modes with `npm run build` and a recorded-mode build; inspect desktop/mobile, local save/reload, generation, compare, restore, unavailable runtime and invalid backup. In recorded mode confirm zero `/api` or Ollama requests, all examples remain usable, and labels stay visible during reveal.
-- [ ] Commit with `feat: add the haunted diary and recorded public experience`.
+- [x] Build a cohesive responsive notebook: dark surroundings, warm paper/ink, restrained eerie accents, clear save state and ghost activity. Provide keyboard navigation, labeled controls, readable contrast and reduced-motion behavior. Use CSS and inline vector decoration; no asset-generation dependency.
+- [x] Wire local flow. Prevent double requests, cancel on navigation as appropriate and use revision guard for persistence. Never hide an unsaved edit, destructive delete or import replacement without confirmation. Render every diary string as plain React text.
+- [x] Generate at least two short fictional examples using the actual local Gemma. Save originals, edits, exact model and generation timestamp. Do not fabricate provenance or pretend recorded output is live.
+- [x] Add recorded mode with persistent `Recorded Gemma demo — no live inference` label, selectable examples, night reveal and comparison. Link source/setup and show an explanation of local privacy/offline prerequisites. Keep local status widgets out of recorded mode.
+- [x] Verify both production modes with `npm run build` and a recorded-mode build; inspect desktop/mobile, local save/reload, generation, compare, restore, unavailable runtime and invalid backup. In recorded mode confirm zero `/api` or Ollama requests, all examples remain usable, and labels stay visible during reveal.
+- [x] Commit with `feat: add the haunted diary and recorded public experience`.
 
 ### Task 5: Verification, publication artifacts and challenge write-up
 
@@ -104,10 +104,10 @@ Builder constants: 12,000 characters per entry, 24,000 characters combined model
 
 **Interfaces:** Deliver working local app, recorded static build, installation guide, real demo evidence and submission draft. Public domain and repository URLs must be actual verified URLs, never invented placeholders presented as delivered.
 
-- [ ] Run `npm test`, `npm run typecheck`, both mode builds and one real generation. Independently review security/data correctness and public-demo transparency; fix substantive findings and rerun only affected checks. Record actual outcomes and limits.
-- [ ] Write README covering Node/Ollama setup, exact tested model, local commands, recorded build, architecture, original preservation, IndexedDB origin limits, backup, model terms and offline prerequisites. Add MIT license for application code and credits for reused work.
-- [ ] Prepare a 60–90 second demo script: write fictional diary, real Gemma generation, reveal and compare, show local runtime, explain recorded public mode. Capture a real video if available recording tools permit; otherwise provide precise steps and screenshots and clearly state that video capture remains for the user.
-- [ ] Prepare English DEV template draft with What I Built, Demo, Code, How I Built It, Why Open Innovation Matters and Prize Categories. Only claim measured model results; list Gemma and .tech categories after actual usage/deployment. Do not publish the DEV post without explicit user instruction.
+- [x] Run `npm test`, `npm run typecheck`, both mode builds and one real generation. Independently review security/data correctness and public-demo transparency; fix substantive findings and rerun only affected checks. Record actual outcomes and limits.
+- [x] Write README covering Node/Ollama setup, exact tested model, local commands, recorded build, architecture, original preservation, IndexedDB origin limits, backup, model terms and offline prerequisites. Add MIT license for application code and credits for reused work.
+- [x] Prepare a 60–90 second demo script: write fictional diary, real Gemma generation, reveal and compare, show local runtime, explain recorded public mode. Capture a real video if available recording tools permit; otherwise provide precise steps and screenshots and clearly state that video capture remains for the user.
+- [x] Prepare English DEV template draft with What I Built, Demo, Code, How I Built It, Why Open Innovation Matters and Prize Categories. Only claim measured model results; list Gemma and .tech categories after actual usage/deployment. Do not publish the DEV post without explicit user instruction.
 - [ ] Use the user-requested DevRelay session workflow: complete user MLH/DEV login, curate the actual relevant development transcript with secrets/private paths removed, save it via `devrelay sessions submit` or its MCP equivalent, verify the returned session and embed its actual identifier under My Agent Session. Describe it as coding-process evidence, separate from runtime Gemma evidence. Never fabricate messages or results. Record its actual privacy/publication state and return the session link. Update `docs/evidence.md` with the measured live-generation and offline checks.
 - [ ] Discover available repository/hosting access and use Sites skill if deploying via Sites. Prepare and verify a public source repository and recorded site when account permissions permit. Attach ghostinthemachine.tech and show exact DNS records if DNS access is unavailable; verify TLS/domain before claiming domain publication. Do not overwrite unrelated existing DNS/site configuration.
 - [ ] Preserve local live code in the source repository even if the deployed build is static recorded mode. If access is unavailable, finish all artifacts and report the exact remaining publication action; never block core development on credentials.

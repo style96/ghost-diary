@@ -20,7 +20,7 @@ The original is always preserved. You can compare the versions and restore your 
 
 The public experience replays genuine local Gemma outputs on three fictional entries. It is labeled **Recorded demo** throughout; there is no live inference on that website. The real application runs locally and accepts new diary entries.
 
-<!-- Before publishing: replace with the verified live domain or deployed Sites URL from docs/deployment.md. A local walkthrough recording may also be embedded here. -->
+[Try the recorded Ghost Diary demo](https://ghost-diary-ghostinthemachine.rarebloom15.chatgpt.site). [Run the real local application](https://github.com/style96/ghost-diary#run-the-real-local-app).
 
 The first recorded page describes a yellow umbrella, a chipped blue cup and three knocks from the kitchen. Gemma added:
 

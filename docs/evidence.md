@@ -1,6 +1,6 @@
 # Ghost Diary — evidence for the submission
 
-Status: checklist prepared before implementation; no runtime claim below is verified yet.
+Status: local real inference, diary save/reopen, original comparison, restore and recorded public-demo flows verified. Thirty behavioral tests and typecheck pass; both production builds pass. Physically disconnected-network generation remains unverified.
 
 ## 1. Show that AI is essential
 
@@ -10,7 +10,7 @@ Capture the exact local model identifier, the bounded context supplied, validate
 
 Demonstrate that stopping Ollama makes new live interventions fail clearly, while existing diary entries remain available. Do not silently fall back to recorded output. This establishes that the runtime AI performs the central transformation.
 
-Pending evidence: model tag, real input/output, latency, comparison screenshot, unavailable-model check.
+Verified: gemma3:4b; three real committed recorded input/output pairs in src/demo/recorded.json; measured requests 5,528 / 7,171 / 7,998 ms (docs/model-measurements.json). Real local browser generation/compare/restore/reopen completed. Comparison and mobile screenshots are in docs/screenshots/. An actual request against a missing local model produced a recoverable error, with no generated fallback. The full suite includes revision collisions across import, deletion and synchronous storage-failure rollback.
 
 ## 2. Show the practical benefit of open innovation
 
@@ -22,11 +22,11 @@ Pending evidence: model tag, real input/output, latency, comparison screenshot, 
 
 Gemma is open-weight with its own license terms. The application code's MIT license does not replace those terms.
 
-Pending evidence: network observations, offline fresh generation, export check, exact model/license links.
+Verified boundaries: fixed loopback Ollama endpoint and Host/Origin guards tested; local production UI uses only packaged assets; both modes inspected without browser console warnings/errors. Backup round-trip and invalid/failed import rollback tested. Gemma terms linked in README. A full external network packet capture and a fresh physically offline generation have NOT been performed; omit claims that these were measured.
 
 ## 3. Capture how it was built with DevRelay
 
-User requested DevRelay. Installed version: 0.1.27. Codex gateway registered; account sign-in pending at preparation time.
+User requested DevRelay. Installed version: 0.1.27. Codex gateway registered. Account sign-in remains pending. A sanitized transcript of actual user/assistant dialogue is prepared locally in ignored artifacts/devrelay-transcript.json, excluding tool payloads and hidden reasoning; it has not been uploaded.
 
 Save the relevant actual coding session after implementation. Keep the significant design choices, real code changes, encountered problems and verification outcomes. Remove secrets, account tokens, private machine paths and unrelated content before sending. Do not include private diary entries; all public examples are fictional.
 
