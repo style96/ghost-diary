@@ -1,0 +1,62 @@
+[
+  {
+    "id": "recorded-1",
+    "title": "The yellow umbrella",
+    "original": "It rained all the way home. I left my yellow umbrella beside the door, dripping onto the floorboards. The apartment was quiet for once.\n\nI made tea in the chipped blue cup and finally finished that book. Around midnight, I heard three soft knocks from the kitchen. Probably the pipes.\n\nI should get some sleep. I live alone, after all.",
+    "revision": 1,
+    "createdAt": "2026-10-28T21:14:00.000Z",
+    "updatedAt": "2026-10-28T21:14:00.000Z",
+    "haunting": {
+      "edits": [
+        {
+          "kind": "insertAfter",
+          "target": "I live alone, after all.",
+          "text": "Someone else was reading the same page."
+        }
+      ],
+      "text": "It rained all the way home. I left my yellow umbrella beside the door, dripping onto the floorboards. The apartment was quiet for once.\n\nI made tea in the chipped blue cup and finally finished that book. Around midnight, I heard three soft knocks from the kitchen. Probably the pipes.\n\nI should get some sleep. I live alone, after all. Someone else was reading the same page.",
+      "model": "gemma3:4b",
+      "generatedAt": "2026-10-30T15:39:09.599Z"
+    }
+  },
+  {
+    "id": "recorded-2",
+    "title": "A second cup",
+    "original": "The yellow umbrella was dry this morning. Strange, because there was a little puddle beneath it.\n\nI found two cups on the kitchen table. Mine was still warm. I put the other one back in the cupboard. Perhaps I was more tired than I thought.\n\nThe knocking started again tonight. Three times. Always three.",
+    "revision": 1,
+    "createdAt": "2026-10-29T22:06:00.000Z",
+    "updatedAt": "2026-10-29T22:06:00.000Z",
+    "haunting": {
+      "edits": [
+        {
+          "kind": "insertAfter",
+          "target": "The knocking started again tonight.",
+          "text": "Someone else always answers the door."
+        }
+      ],
+      "text": "The yellow umbrella was dry this morning. Strange, because there was a little puddle beneath it.\n\nI found two cups on the kitchen table. Mine was still warm. I put the other one back in the cupboard. Perhaps I was more tired than I thought.\n\nThe knocking started again tonight. Someone else always answers the door. Three times. Always three.",
+      "model": "gemma3:4b",
+      "generatedAt": "2026-10-30T15:39:16.771Z"
+    }
+  },
+  {
+    "id": "recorded-3",
+    "title": "A note to myself",
+    "original": "I moved the yellow umbrella into the closet. I checked the lock twice before bed.\n\nThere is a line in yesterday’s diary that I cannot remember writing. The ink looks different. I have been staring at it for twenty minutes.\n\nIf this happens again, I will leave this notebook open on the kitchen table. I want to see what happens when I stop looking.",
+    "revision": 1,
+    "createdAt": "2026-10-30T23:42:00.000Z",
+    "updatedAt": "2026-10-30T23:42:00.000Z",
+    "haunting": {
+      "edits": [
+        {
+          "kind": "insertAfter",
+          "target": "I want to see what happens when I stop looking.",
+          "text": "Someone else is reading your thoughts, I suspect."
+        }
+      ],
+      "text": "I moved the yellow umbrella into the closet. I checked the lock twice before bed.\n\nThere is a line in yesterday’s diary that I cannot remember writing. The ink looks different. I have been staring at it for twenty minutes.\n\nIf this happens again, I will leave this notebook open on the kitchen table. I want to see what happens when I stop looking. Someone else is reading your thoughts, I suspect.",
+      "model": "gemma3:4b",
+      "generatedAt": "2026-10-30T15:39:24.770Z"
+    }
+  }
+]
