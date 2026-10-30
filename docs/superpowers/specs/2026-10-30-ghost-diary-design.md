@@ -1,6 +1,6 @@
 # Ghost Diary — MVP design
 
-Status: proposed; awaiting user approval before implementation.
+Status: approved by the user, including builder proposals, on 2026-10-30.
 Date: 2026-10-30
 
 ## Intent and agreed direction
@@ -99,7 +99,7 @@ If inference is slow, select a smaller Gemma variant and reduce supplied context
 
 Official Week 4 rules require a new project built during the entry period, a DEV template post, demo, repository link and an explanation of the role of open AI. A video is an allowed demo format. Target Best Use of Gemma and, once the domain experience is deployed, Best Use of a .tech Domain. Partner category acceptance remains the judges' decision.
 
-Deadline: 2026-10-31 23:59 PDT, equivalent to 2026-11-01 07:59 Europe/Berlin. Submit earlier. Note post-deadline changes in the README. Use the required devchallenge and hf26challenge tags, and an English submission for prize consideration. DevRelay is optional; do not upload this chat without user authorization.
+Deadline: 2026-10-31 23:59 PDT, equivalent to 2026-11-01 07:59 Europe/Berlin. Submit earlier. Note post-deadline changes in the README. Use the required devchallenge and hf26challenge tags, and an English submission for prize consideration. The user explicitly requested DevRelay on 2026-10-30: preserve and share the relevant development session after removing secrets, private paths and unrelated context. Exclude personal diary content; use fictional examples. This does not authorize publishing the DEV submission article.
 
 References:
 - https://dev.to/challenges/hacktoberfest-week4-2026-10-26
