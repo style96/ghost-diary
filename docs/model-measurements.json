@@ -1,0 +1,20 @@
+[
+  {
+    "id": "recorded-1",
+    "model": "gemma3:4b",
+    "elapsedMs": 5528,
+    "generatedAt": "2026-10-30T15:39:09.599Z"
+  },
+  {
+    "id": "recorded-2",
+    "model": "gemma3:4b",
+    "elapsedMs": 7171,
+    "generatedAt": "2026-10-30T15:39:16.771Z"
+  },
+  {
+    "id": "recorded-3",
+    "model": "gemma3:4b",
+    "elapsedMs": 7998,
+    "generatedAt": "2026-10-30T15:39:24.770Z"
+  }
+]
