@@ -26,7 +26,7 @@ Verified boundaries: fixed loopback Ollama endpoint and Host/Origin guards teste
 
 ## 3. Capture how it was built with DevRelay
 
-User requested DevRelay. Installed version: 0.1.27. Codex gateway registered. Account sign-in remains pending. A sanitized transcript of actual user/assistant dialogue is prepared locally in ignored artifacts/devrelay-transcript.json, excluding tool payloads and hidden reasoning; it has not been uploaded.
+User requested DevRelay. Installed version: 0.1.27. Codex gateway registered; MLH and linked DEV account connected. A sanitized transcript of actual user/assistant dialogue was uploaded, excluding tool payloads, private paths, credentials and hidden reasoning.
 
 Save the relevant actual coding session after implementation. Keep the significant design choices, real code changes, encountered problems and verification outcomes. Remove secrets, account tokens, private machine paths and unrelated content before sending. Do not include private diary entries; all public examples are fictional.
 
@@ -34,7 +34,7 @@ Distinguish coding assistance from runtime AI: Codex helps build the app, Gemma 
 
 Once saved, verify the returned identifier and use the real embed tag in the DEV draft, for example `{% agent_session ACTUAL_ID %}`. Do not publish a made-up identifier or treat a private session as publicly accessible.
 
-Pending evidence: connected account, sanitized transcript, saved session ID/link, confirmed sharing state.
+Verified saved session: 1318, tool_name codex, 45 messages, published=false (draft). URL: https://dev.to/agent_sessions/ghost-diary-building-a-local-gemma-haunted-notebook-with-codex-rtstae . This ID is embedded in the submission draft. An earlier CLI attempt (1317) defaulted to the wrong tool label and remains an unused private draft; the correct session is 1318. The DEV submission article itself has not been published.
 
 ## Suggested short demo
 

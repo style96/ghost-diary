@@ -12,8 +12,7 @@ Built for [Hacktoberfest Open-Source AI Challenge Week 4: Ghost in the Machine](
 - **Recorded website:** explore three fictional diary pages and reveal genuine, previously generated Gemma outputs. It has no live inference or personal diary editor. The persistent banner identifies it as recorded.
 
 Source: [github.com/style96/ghost-diary](https://github.com/style96/ghost-diary).
-Public recorded demo: [open Ghost Diary](https://ghost-diary-ghostinthemachine.rarebloom15.chatgpt.site).
-The intended custom domain is `ghostinthemachine.tech`; domain activation is tracked in [deployment notes](docs/deployment.md).
+Public recorded demo: [ghostinthemachine.tech](https://ghostinthemachine.tech). DNS routing and HTTPS are active; details are in [deployment notes](docs/deployment.md).
 
 ![Recorded example and real Gemma ghost ink](docs/screenshots/recorded-haunting.png)
 

@@ -20,7 +20,7 @@ The original is always preserved. You can compare the versions and restore your 
 
 The public experience replays genuine local Gemma outputs on three fictional entries. It is labeled **Recorded demo** throughout; there is no live inference on that website. The real application runs locally and accepts new diary entries.
 
-[Try the recorded Ghost Diary demo](https://ghost-diary-ghostinthemachine.rarebloom15.chatgpt.site). [Run the real local application](https://github.com/style96/ghost-diary#run-the-real-local-app).
+[Try the recorded Ghost Diary demo](https://ghostinthemachine.tech). [Run the real local application](https://github.com/style96/ghost-diary#run-the-real-local-app).
 
 The first recorded page describes a yellow umbrella, a chipped blue cup and three knocks from the kitchen. Gemma added:
 
@@ -58,13 +58,15 @@ That is the appeal of this particular ghost: it can inhabit the notebook without
 
 ## My Agent Session
 
-DevRelay is installed for sharing the relevant development record. The session will show the design decisions, real model experiments and verification outcomes, with secrets and private paths removed.
+I saved a curated development transcript with DevRelay: the design discussion, local model experiments, data-preservation decisions and verification outcomes. Secrets, private machine paths, tool payloads and internal reasoning were excluded.
 
-<!-- Account connection and actual session upload are pending. Replace this section with the verified session link/embed before publishing; do not invent an ID. -->
+{% agent_session 1318 %}
+
+[View the Codex development session](https://dev.to/agent_sessions/ghost-diary-building-a-local-gemma-haunted-notebook-with-codex-rtstae). This session is currently a draft owned by the submission author; review its visibility when publishing the article.
 
 ## Prize Categories
 
 - **Best Use of Gemma:** Gemma 3 4B generates the diary interventions locally through Ollama.
-- **Best Use of a .tech Domain:** intended for `ghostinthemachine.tech`, claimed through Hacktoberfest. Include this category only after the project is live on that domain, with its link above.
+- **Best Use of a .tech Domain:** the recorded public experience is live at [ghostinthemachine.tech](https://ghostinthemachine.tech), a domain claimed through Hacktoberfest.
 
-<!-- Final publication checks: verified demo link; actual DevRelay session or remove pending section; .tech routing confirmed; no placeholder comments; post in English with required tags before deadline. -->
+<!-- Final publication checks: review agent-session visibility; remove any remaining preparation comments; publish in English with required tags before deadline. -->
