@@ -118,6 +118,7 @@ If you were building a haunted diary, how much freedom would you give the model 
 ## Prize Categories
 
 - **Best Use of Gemma:** Gemma 3 4B generates the diary interventions locally through Ollama.
+- **Best Use of Render:** the recorded public demo is deployed as a Render Static Site from the GitHub repository, using a test-before-build pipeline. The real diary model remains local.
 - **Best Use of ElevenLabs:** the public demo bundles three matching Sarah soft-whisper recordings generated through the official SDK; ElevenLabs also narrates the local-app video.
 - **Best Use of a .tech Domain:** the recorded public experience is live at [ghostinthemachine.tech](https://ghostinthemachine.tech), a domain claimed through Hacktoberfest.
 

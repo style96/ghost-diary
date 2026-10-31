@@ -9,6 +9,8 @@ services:
     autoDeployTrigger: commit
     buildCommand: npm ci --include=dev && npm test && npm run build:demo
     staticPublishPath: ./out
+    domains:
+      - ghostinthemachine.tech
     envVars:
       - key: NODE_VERSION
         value: "24"

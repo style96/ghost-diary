@@ -1,6 +1,6 @@
 # Publication status
 
-## Render deployment — 2026-10-31, domain cutover pending
+## Current host — Render, 2026-10-31
 
 The same recorded demo is now live at https://ghost-diary.onrender.com.
 Service `srv-dbitepg473hc73ajfnmg`, deployment
@@ -10,11 +10,20 @@ HTTP verification at 11:57:35 UTC confirmed the exact recorded JavaScript
 bundle and SHA-256 matches for all three served MP3s. The configured Linux
 install/test/build pipeline completed with Node.js 24.22.2.
 
-The apex domain and `www` were added to Render, but DNS still routes the apex
-to Sites. DNS-provider sign-in is required before cutover. Do not treat the
-custom domain as migrated yet. See [migration record](render-migration.md).
+The custom domain now routes to Render. All four authoritative nameservers
+return apex A `216.24.57.1`; `www` is a CNAME to `ghost-diary.onrender.com`.
+Both names are verified in Render. Direct requests to the Render IP with
+normal TLS validation returned `200 OK` for the apex and `301` from `www`
+to `https://ghostinthemachine.tech/`. At 12:39:02 UTC, the JavaScript bundle
+and all three MP3s fetched through the apex directly from Render matched
+the local source hashes. Auto-Deploy is **On Commit** from GitHub `main`.
 
-## Latest deployment — version 4, 2026-10-31
+The previous Sites A records were replaced; the existing nameservers and
+both Sites verification TXT records were preserved. The previous Sites
+project and its default production URL remain available as a fallback.
+See [migration record](render-migration.md).
+
+## Previous host — Sites version 4, 2026-10-31
 
 Published successfully at **11:04:22 UTC / 12:04:22 Europe/Berlin** while preserving the existing public audience and domain bindings.
 

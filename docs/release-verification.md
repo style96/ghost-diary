@@ -5,7 +5,8 @@ Verified on 2026-10-31. Release scope: existing application, recorded demo, voic
 ## Source and publication
 
 - GitHub `main` and the local application/video source matched `2ff83576f7af59c76cbbd456315d7f468e194bc9` before final documentation corrections.
-- Sites version **4** deployed successfully. Source `a00a9d05d1289b6aa3fc8930b387982cf1228042` preserves Sites/GitHub history and has the same tracked file tree as that application commit.
+- Sites version **4** deployed successfully and remains a fallback. Source `a00a9d05d1289b6aa3fc8930b387982cf1228042` preserves Sites/GitHub history and has the same tracked file tree as that application commit.
+- The primary domain subsequently migrated to Render. Both apex and www DNS names are verified. Direct HTTPS requests to Render IP `216.24.57.1` passed certificate validation; apex returned 200 and www redirected to the apex with 301. The served JavaScript and all three MP3s matched local hashes. See [Render migration](render-migration.md) for service, deployment and DNS provenance.
 - Final documentation corrections update examples, timing, voice attribution and publication status; runtime code/assets remain unchanged.
 - https://ghostinthemachine.tech returned HTTP 200. Its `/assets/index-Blq2uZKr.js` matched the verified `out/` bundle exactly.
 

@@ -16,7 +16,7 @@ Public recorded demo: [ghostinthemachine.tech](https://ghostinthemachine.tech). 
 
 ![Recorded diary with real Gemma ghost ink and the Hear the ghost button](docs/screenshots/recorded-haunting-voice.jpg)
 
-*Screenshots above and below show an earlier fixture. Sites version 4 now serves the current fictional callback sequence and all three matching ElevenLabs recordings. The video demonstrates a separate real local generation; see the deployment notes for provenance.*
+*Screenshots above and below show an earlier fixture. The current Render deployment serves the fictional callback sequence and all three matching ElevenLabs recordings. The video demonstrates a separate real local generation; see the deployment notes for provenance.*
 
 [Watch the 90-second English demo](deliverables/ghost-diary-demo.mp4) · [English captions](deliverables/ghost-diary-demo.en.srt) · [Editable video source](deliverables/ghost-diary-video-source.zip)
 
@@ -87,7 +87,7 @@ npx vite preview --host 127.0.0.1 --port 4173 --outDir out
 
 Deploy `out/` to static hosting. `npm run build` produces the **local** UI in `dist/`; do not deploy that as if it provides hosted inference.
 
-The recorded demo is also live at [ghost-diary.onrender.com](https://ghost-diary.onrender.com). [`render.yaml`](render.yaml) records its Node.js 24, test-before-build and `main` deployment settings. The [Render migration notes](docs/render-migration.md) track the verified publication and pending domain cutover; `ghostinthemachine.tech` remains on Sites until that cutover is confirmed.
+The public domain is hosted on Render, with [ghost-diary.onrender.com](https://ghost-diary.onrender.com) also available. [`render.yaml`](render.yaml) records its Node.js 24, test-before-build, custom domain and `main` deployment settings. GitHub pushes automatically trigger deployment. The [Render migration notes](docs/render-migration.md) record the completed DNS cutover, direct HTTPS checks and preserved Sites fallback.
 
 `npm run record:demo -- --candidates 3` makes three real local calls per fictional page and checkpoints every candidate (including failures) in ignored `artifacts/demo-candidates.json`. It leaves the demo unchanged until you review the candidates and run `npm run record:demo -- --select 1,2,3` with one chosen attempt per page. Selection checks that edits match the raw reply, validates their application and writes `src/demo/recorded.json`, `docs/demo-generation.json` and `docs/model-measurements.json`. Never edit a model sentence and present it as recorded output. Use fictional inputs only: these evidence files deliberately retain the complete supplied context.
 

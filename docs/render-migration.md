@@ -1,7 +1,7 @@
 # Render migration
 
-Status: Render deployed and verified; custom-domain DNS cutover pending.
-The custom domain still routes to Sites until its DNS records are updated.
+Status: Render deployed; custom-domain DNS cutover and direct HTTPS checks
+completed on 2026-10-31. Primary URL: https://ghostinthemachine.tech.
 
 ## Verified Render publication — 2026-10-31
 
@@ -15,9 +15,17 @@ The custom domain still routes to Sites until its DNS records are updated.
   `/assets/index-Blq2uZKr.js` matched the local recorded build exactly. All
   three MP3s returned HTTP 200 with the exact source SHA-256 hashes recorded
   in [release verification](release-verification.md).
-- `ghostinthemachine.tech` and its automatic `www` redirect were added to
-  this service. DNS verification is pending. Render requests apex A
-  `216.24.57.1` and `www` CNAME `ghost-diary.onrender.com`.
+- Both `ghostinthemachine.tech` and `www.ghostinthemachine.tech` are verified
+  in Render. All four authoritative DNS servers return apex A `216.24.57.1`.
+  The `www` CNAME is `ghost-diary.onrender.com`.
+- Direct HTTPS checks with `curl --resolve` and normal certificate validation
+  returned apex HTTP 200 and www HTTP 301 to the apex. The apex response
+  included Render's `rndr-id` header, proving the request reached the new host.
+- At 12:39:02 UTC, direct Render downloads of the recorded JavaScript and
+  three MP3s matched the local SHA-256 hashes exactly. The www HTTPS redirect
+  passed at 12:39:35 UTC. The dashboard showed its certificate issued.
+- Dashboard Auto-Deploy is **On Commit**. Each GitHub `main` push triggers
+  the configured install/test/build pipeline.
 - GitHub App access was explicitly approved for only `style96/ghost-diary`.
 
 Preparation verified on 2026-10-31: `render.yaml` passed the current official
@@ -69,8 +77,10 @@ If the Render domain cannot serve the verified demo with valid HTTPS, restore
 the pre-cutover routing values and verify the custom domain against Sites.
 Do not remove the working fallback while DNS is propagating.
 
-## Access still required
+## Preserved fallback
 
-Render account access is needed to create/inspect the service. The domain's
-DNS-provider session is needed to perform the cutover. A prepared Blueprint
-and a GitHub push do not prove that deployment or domain migration occurred.
+The former Sites project, default production URL and both validation TXT
+records remain in place. Only the two former apex A records were replaced
+by Render's single A record, and the www CNAME was added. Nameservers and
+other domain settings were not changed. Render access and DNS changes were
+performed through the user's authenticated Chrome sessions.
