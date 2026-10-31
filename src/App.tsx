@@ -5,6 +5,8 @@ import {validateEntries,parseBackup,serializeBackup} from './domain/backup';
 import * as store from './storage/diary-store';
 import {getStatus,haunt} from './api/ghost';
 import {HauntedText,HauntingCompare} from './components/HauntingCompare';
+import {GhostVoice} from './components/GhostVoice';
+import {getRecordedVoice} from './demo/voices';
 import recordedData from './demo/recorded.json';
 const recorded=__RECORDED__;
 const samples=validateEntries(recordedData);
@@ -14,19 +16,27 @@ export default function App(){
   const [entries,setEntries]=useState<Entry[]>(recorded?samples:[]),[selected,setSelected]=useState<string|null>(recorded?samples[0]?.id:null);
   const [title,setTitle]=useState(''),[text,setText]=useState(''),[editing,setEditing]=useState(!recorded),[revealed,setRevealed]=useState<Set<string>>(new Set());
   const [busy,setBusy]=useState(false),[error,setError]=useState(''),[notice,setNotice]=useState(''),[compare,setCompare]=useState(false),[about,setAbout]=useState(false);
+  const [inkEntry,setInkEntry]=useState<string|null>(null);
   const [status,setStatus]=useState<ModelStatus>({available:false,model:'Gemma',message:'Checking connection…'});
   const upload=useRef<HTMLInputElement>(null),controller=useRef<AbortController|null>(null);
   const current=entries.find(e=>e.id===selected);
   const shown=current&&(!recorded||revealed.has(current.id))?current:current?{...current,haunting:undefined}:undefined;
+  const voice=recorded&&shown?getRecordedVoice(shown):undefined;
   const dirty=editing&&(text!==(current?.original||'')||title!==(current?.title||''));
   const refresh=async()=>{const all=await store.listEntries();setEntries(all);return all};
   const checkConnection=async()=>{try{setStatus(await getStatus())}catch{setStatus({available:false,model:'Gemma',message:'Start the local server and Ollama.'})}};
   useEffect(()=>{if(!recorded){refresh().catch(()=>setError('Browser storage is unavailable. Enable storage to keep your diary.'));checkConnection()}return()=>controller.current?.abort()},[]);
   useEffect(()=>{const handler=(e:BeforeUnloadEvent)=>{if(dirty){e.preventDefault();e.returnValue=''}};window.addEventListener('beforeunload',handler);return()=>window.removeEventListener('beforeunload',handler)},[dirty]);
   useEffect(()=>{const key=(event:KeyboardEvent)=>{if(event.key==='Escape'){setCompare(false);setAbout(false)}};window.addEventListener('keydown',key);return()=>window.removeEventListener('keydown',key)},[]);
+  useEffect(()=>{
+    if(inkEntry===null)return;
+    if(about||editing){setInkEntry(null);return}
+    const timer=window.setTimeout(()=>setInkEntry(null),1300);
+    return()=>window.clearTimeout(timer);
+  },[inkEntry,about,editing]);
   function select(entry?:Entry){
     if(dirty&&!window.confirm('Leave this page without saving your changes?'))return;
-    controller.current?.abort();setBusy(false);setSelected(entry?.id||null);setTitle(entry?.title||'');setText(entry?.original||'');setEditing(!entry&&!recorded);setError('');setNotice('');setCompare(false);
+    controller.current?.abort();setBusy(false);setInkEntry(null);setSelected(entry?.id||null);setTitle(entry?.title||'');setText(entry?.original||'');setEditing(!entry&&!recorded);setError('');setNotice('');setCompare(false);
   }
   async function save(){try{if(!text.trim()){setError('Leave a few words on the page first.');return;}
     const now=new Date().toISOString();const saved=await store.saveEntry({...current,id:current?.id||crypto.randomUUID(),title:title.trim()||'An untitled day',original:text,revision:current?.revision||1,createdAt:current?.createdAt||now,updatedAt:now},!current);
@@ -37,10 +47,10 @@ export default function App(){
     try{
       if(recorded){await new Promise<void>((resolve,reject)=>{const id=setTimeout(resolve,1600);active.signal.addEventListener('abort',()=>{clearTimeout(id);reject(new DOMException('Aborted','AbortError'))},{once:true})});setRevealed(old=>new Set(old).add(current.id));}
       else{const result=await haunt(current,entries,active.signal);if(!await store.applyIfCurrent(current.id,current.revision,result))throw new Error('This page changed while the ghost was writing. Reopen it and try again.');await refresh();}
-      setNotice('Something is different. Read closely.');
+      setInkEntry(current.id);setNotice('Something is different. Read closely.');
     }catch(e){if(!active.signal.aborted)setError(e instanceof Error?e.message:'The ghost could not reach this page.')}finally{if(controller.current===active)setBusy(false)}
   }
-  async function restore(){if(!current)return;try{if(recorded)setRevealed(old=>{const next=new Set(old);next.delete(current.id);return next});else{await store.saveEntry({...current,haunting:undefined});await refresh()}setNotice('Only your words remain.')}catch(e){setError(String(e))}}
+  async function restore(){if(!current)return;try{if(recorded)setRevealed(old=>{const next=new Set(old);next.delete(current.id);return next});else{await store.saveEntry({...current,haunting:undefined});await refresh()}setInkEntry(null);setNotice('Only your words remain.')}catch(e){setError(String(e))}}
   async function remove(){if(!current||!window.confirm('Delete this diary page permanently?'))return;try{await store.deleteEntry(current.id);await refresh();select()}catch{setError('The page could not be deleted.')}}
   async function exportDiary(){try{const url=URL.createObjectURL(new Blob([serializeBackup(entries)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='ghost-diary-backup.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}catch{setError('The backup could not be created.')}}
   async function importDiary(file?:File){if(!file)return;try{if(file.size>20_000_000)throw new Error('Backup exceeds 20 MB.');const data=parseBackup(await file.text());if(!window.confirm(`Replace your diary with ${data.length} imported pages? Export your current diary first if you want to keep it.`))return;await store.importEntries(data);const all=await refresh();select(all[0]);setNotice('Your diary has been imported.')}catch{setError('This backup could not be imported. Your existing diary is unchanged.')}finally{if(upload.current)upload.current.value=''}}
@@ -67,7 +77,8 @@ export default function App(){
           <div className="paper-top"><span className="eyebrow">{current?date(current.createdAt):date(new Date().toISOString())}</span><div className="page-state">{busy?<><span className="status-dot red-dot pulse"/>A presence is writing</>:shown?.haunting?<><span className="status-dot red-dot"/>THIS PAGE HAS CHANGED</>:<><span className="status-dot"/>{editing?'A MOMENT TO YOURSELF':'ALL IS QUIET'}</>}</div></div>
           <div className="paper-content">
             <div className="entry-heading">{editing?<input aria-label="Entry title" placeholder="Give today a name…" value={title} maxLength={120} onChange={e=>setTitle(e.target.value)}/>:<h2>{current?.title||'A page of your own'}</h2>}<Feather className="heading-feather" size={25} strokeWidth={1}/></div>
-            <div className="entry-body">{editing?<textarea aria-label="Diary text" placeholder={'Dear diary,\n\nSomething ordinary happened today…'} value={text} maxLength={12000} onChange={e=>setText(e.target.value)}/>:shown?<p><HauntedText entry={shown}/></p>:<p className="empty-paper">Every haunting starts with a few words.</p>}</div>
+            <div className="entry-body">{editing?<textarea aria-label="Diary text" placeholder={'Dear diary,\n\nSomething ordinary happened today…'} value={text} maxLength={12000} onChange={e=>setText(e.target.value)}/>:shown?<p><HauntedText key={`${shown.id}:${shown.haunting?.generatedAt||'quiet'}`} entry={shown} animate={inkEntry===shown.id}/></p>:<p className="empty-paper">Every haunting starts with a few words.</p>}</div>
+            {voice&&<GhostVoice key={shown!.id} voice={voice}/>}
             {!editing&&shown?.haunting&&<div className="ghost-note"><span>✧</span><p>You’re not the only one<br/>keeping a diary.</p></div>}
             <div className="paper-bottom"><span>{editing?`${text.length.toLocaleString()} / 12,000 characters`:'— End of entry —'}</span><span className="page-number">{current?String(entries.findIndex(e=>e.id===current.id)+1).padStart(2,'0'):'01'}</span></div>
           </div>
