@@ -2,12 +2,15 @@ import {describe,it,expect} from 'vitest';
 import {getRecordedVoice} from '../src/demo/voices';
 import {createGhostPlayback} from '../src/audio/ghost-playback';
 import recorded from '../src/demo/recorded.json';
+import voices from '../src/demo/voices.json';
 import type {Entry} from '../src/domain/diary';
 
 describe('recorded ghost voices',()=>{
-  it('offers a local voice asset for each exact recorded haunting',()=>{
+  it('offers an asset only when the manifest matches the exact new intervention',()=>{
     for(const entry of recorded){
-      expect(getRecordedVoice(entry as Entry)?.src).toBe(`/audio/${entry.id}.wav`);
+      const voice=voices.find(v=>v.id===entry.id);
+      const matching=voice?.text===entry.haunting.edits.map(e=>e.text).join(' ');
+      expect(getRecordedVoice(entry as Entry)?.src).toBe(matching?voice!.src:undefined);
     }
   });
   it('never assigns demo audio to a hidden, edited or unrelated personal entry',()=>{

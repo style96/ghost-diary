@@ -1,0 +1,6 @@
+// Entirely fictional. Specific details are deliberately absent from later pages.
+export const stories=[
+  {title:'The yellow umbrella',date:'2026-10-28T21:14:00.000Z',text:'I left my yellow umbrella on the third hook beside the door. One spoke is bent, so it never folds quite flat.\n\nI made tea in the cracked blue cup. I turn the crack toward the wall so I do not have to look at it. The spare key is still under the sugar tin.\n\nI put a folded towel under the drips before bed.'},
+  {title:'The empty hook',date:'2026-10-29T22:06:00.000Z',text:'The spare key was gone from under the sugar tin. I will ask the caretaker tomorrow.\n\nI set two places at the kitchen table without thinking. I put the extra spoon away, but left the second saucer out.\n\nThe hallway floor was dry when I got home. I checked my bag twice. The third hook beside the door was empty.'},
+  {title:'The locked cupboard',date:'2026-10-30T23:42:00.000Z',text:'The caretaker says nobody came upstairs. I found the spare key on the second saucer this morning. There was a ring of tea around it.\n\nThe umbrella was hanging beside the door again. I carried it straight to the hallway cupboard.\n\nI locked the cupboard with the umbrella inside. I slid the key under the door for the caretaker to collect.'},
+];

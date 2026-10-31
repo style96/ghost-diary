@@ -2,7 +2,7 @@
   {
     "id": "recorded-1",
     "title": "The yellow umbrella",
-    "original": "It rained all the way home. I left my yellow umbrella beside the door, dripping onto the floorboards. The apartment was quiet for once.\n\nI made tea in the chipped blue cup and finally finished that book. Around midnight, I heard three soft knocks from the kitchen. Probably the pipes.\n\nI should get some sleep. I live alone, after all.",
+    "original": "I left my yellow umbrella on the third hook beside the door. One spoke is bent, so it never folds quite flat.\n\nI made tea in the cracked blue cup. I turn the crack toward the wall so I do not have to look at it. The spare key is still under the sugar tin.\n\nI put a folded towel under the drips before bed.",
     "revision": 1,
     "createdAt": "2026-10-28T21:14:00.000Z",
     "updatedAt": "2026-10-28T21:14:00.000Z",
@@ -10,19 +10,19 @@
       "edits": [
         {
           "kind": "insertAfter",
-          "target": "I live alone, after all.",
-          "text": "Someone else was reading the same page."
+          "target": "I put a folded towel under the drips before bed.",
+          "text": "I gently touched the bent spoke."
         }
       ],
-      "text": "It rained all the way home. I left my yellow umbrella beside the door, dripping onto the floorboards. The apartment was quiet for once.\n\nI made tea in the chipped blue cup and finally finished that book. Around midnight, I heard three soft knocks from the kitchen. Probably the pipes.\n\nI should get some sleep. I live alone, after all. Someone else was reading the same page.",
+      "text": "I left my yellow umbrella on the third hook beside the door. One spoke is bent, so it never folds quite flat.\n\nI made tea in the cracked blue cup. I turn the crack toward the wall so I do not have to look at it. The spare key is still under the sugar tin.\n\nI put a folded towel under the drips before bed. I gently touched the bent spoke.",
       "model": "gemma3:4b",
-      "generatedAt": "2026-10-30T15:39:09.599Z"
+      "generatedAt": "2026-10-31T08:08:08.080Z"
     }
   },
   {
     "id": "recorded-2",
-    "title": "A second cup",
-    "original": "The yellow umbrella was dry this morning. Strange, because there was a little puddle beneath it.\n\nI found two cups on the kitchen table. Mine was still warm. I put the other one back in the cupboard. Perhaps I was more tired than I thought.\n\nThe knocking started again tonight. Three times. Always three.",
+    "title": "The empty hook",
+    "original": "The spare key was gone from under the sugar tin. I will ask the caretaker tomorrow.\n\nI set two places at the kitchen table without thinking. I put the extra spoon away, but left the second saucer out.\n\nThe hallway floor was dry when I got home. I checked my bag twice. The third hook beside the door was empty.",
     "revision": 1,
     "createdAt": "2026-10-29T22:06:00.000Z",
     "updatedAt": "2026-10-29T22:06:00.000Z",
@@ -30,19 +30,19 @@
       "edits": [
         {
           "kind": "insertAfter",
-          "target": "The knocking started again tonight.",
-          "text": "Someone else always answers the door."
+          "target": "The third hook beside the door was empty.",
+          "text": "I examined the bent spoke of the umbrella."
         }
       ],
-      "text": "The yellow umbrella was dry this morning. Strange, because there was a little puddle beneath it.\n\nI found two cups on the kitchen table. Mine was still warm. I put the other one back in the cupboard. Perhaps I was more tired than I thought.\n\nThe knocking started again tonight. Someone else always answers the door. Three times. Always three.",
+      "text": "The spare key was gone from under the sugar tin. I will ask the caretaker tomorrow.\n\nI set two places at the kitchen table without thinking. I put the extra spoon away, but left the second saucer out.\n\nThe hallway floor was dry when I got home. I checked my bag twice. The third hook beside the door was empty. I examined the bent spoke of the umbrella.",
       "model": "gemma3:4b",
-      "generatedAt": "2026-10-30T15:39:16.771Z"
+      "generatedAt": "2026-10-31T08:08:39.970Z"
     }
   },
   {
     "id": "recorded-3",
-    "title": "A note to myself",
-    "original": "I moved the yellow umbrella into the closet. I checked the lock twice before bed.\n\nThere is a line in yesterday’s diary that I cannot remember writing. The ink looks different. I have been staring at it for twenty minutes.\n\nIf this happens again, I will leave this notebook open on the kitchen table. I want to see what happens when I stop looking.",
+    "title": "The locked cupboard",
+    "original": "The caretaker says nobody came upstairs. I found the spare key on the second saucer this morning. There was a ring of tea around it.\n\nThe umbrella was hanging beside the door again. I carried it straight to the hallway cupboard.\n\nI locked the cupboard with the umbrella inside. I slid the key under the door for the caretaker to collect.",
     "revision": 1,
     "createdAt": "2026-10-30T23:42:00.000Z",
     "updatedAt": "2026-10-30T23:42:00.000Z",
@@ -50,13 +50,13 @@
       "edits": [
         {
           "kind": "insertAfter",
-          "target": "I want to see what happens when I stop looking.",
-          "text": "Someone else is reading your thoughts, I suspect."
+          "target": "I locked the cupboard with the umbrella inside.",
+          "text": "I straightened the bent spoke on the umbrella."
         }
       ],
-      "text": "I moved the yellow umbrella into the closet. I checked the lock twice before bed.\n\nThere is a line in yesterday’s diary that I cannot remember writing. The ink looks different. I have been staring at it for twenty minutes.\n\nIf this happens again, I will leave this notebook open on the kitchen table. I want to see what happens when I stop looking. Someone else is reading your thoughts, I suspect.",
+      "text": "The caretaker says nobody came upstairs. I found the spare key on the second saucer this morning. There was a ring of tea around it.\n\nThe umbrella was hanging beside the door again. I carried it straight to the hallway cupboard.\n\nI locked the cupboard with the umbrella inside. I straightened the bent spoke on the umbrella. I slid the key under the door for the caretaker to collect.",
       "model": "gemma3:4b",
-      "generatedAt": "2026-10-30T15:39:24.770Z"
+      "generatedAt": "2026-10-31T08:09:04.930Z"
     }
   }
 ]

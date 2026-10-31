@@ -12,3 +12,13 @@ Target length: 60–90 seconds. Use fictional text. This is a recording script, 
 Only include an offline claim after an actual fresh generation with the internet disconnected. Do not disconnect the user's network automatically. No screen-recording utility was found during setup; screenshots and the deployed interactive demo can accompany the submission if no video is recorded.
 
 DevRelay belongs in “My Agent Session”: it documents how Codex helped build this application. It is distinct from Gemma generating diary interventions.
+
+## Reviewing the new recorded sequence locally
+
+Build with `npm run build:demo` and preview `out/`. Read the three fictional pages
+in order. On page 1, notice the bent spoke; on page 2, reveal the line after the
+empty third hook; on page 3, reveal the straightening after the locked cupboard.
+Use comparison and restore to show the original remains intact. The exact lines,
+selection and actual supplied history are documented in [callback evidence](history-callbacks.md).
+The old voice recordings do not match these lines, so their controls are hidden.
+This checkout has not been deployed; existing public screenshots show older text.

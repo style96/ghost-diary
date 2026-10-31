@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { handleApi } from '../server/http';
 import { generateHaunting, buildMessages } from '../server/ollama';
 const input = {entry:{id:'one',revision:1,original:'I locked the door.'},history:[]};
+const diaryData=(messages:ReturnType<typeof buildMessages>)=>JSON.parse(messages.at(-1)!.content.split('\n\nDiary data (JSON):\n')[1]);
 const haunting = {edits:[{kind:'replace',target:'I locked the door.',text:'Someone unlocked it.'}],text:'Someone unlocked it.',model:'gemma3:1b',generatedAt:'2026-10-30T12:00:00.000Z'};
 const deps = {generate:async()=>haunting,status:async()=>({available:true,model:'gemma3:1b'})};
 const request = (body:unknown=input,headers:Record<string,string>={})=>new Request('http://127.0.0.1:3001/api/haunt',{method:'POST',headers:{'Content-Type':'application/json',...headers},body:JSON.stringify(body)});
@@ -26,9 +27,23 @@ describe('local inference HTTP boundary',()=>{
   });
   it('bounds model context',()=>{
     const messages=buildMessages({entry:{...input.entry,original:'x'.repeat(12000)},history:Array(10).fill('y'.repeat(12000))});
-    const prompt=messages[1].content;
+    const prompt=JSON.stringify(diaryData(messages));
     expect(prompt.length).toBeLessThan(25500);
-    expect(JSON.parse(prompt).history).toHaveLength(3);
+    expect(diaryData(messages).history).toHaveLength(3);
+    expect(diaryData(messages).original).toHaveLength(12000);
+    expect(diaryData(messages).history.join('')).toHaveLength(12000);
+  });
+  it('passes original history unchanged in supplied order and excludes a fourth entry',()=>{
+    const history=['A cracked blue cup.','A yellow umbrella.','A missing key.','Not in context.'];
+    expect(diaryData(buildMessages({...input,history}))).toEqual({original:input.entry.original,history:history.slice(0,3)});
+    expect(diaryData(buildMessages(input)).history).toEqual([]);
+  });
+  it('keeps instructions and diary together for Gemma templates that map system to user turns',()=>{
+    const messages=buildMessages(input);
+    expect(messages).toHaveLength(1);
+    expect(messages[0].role).toBe('user');
+    expect(messages[0].content).toContain('Never invent a past event');
+    expect(diaryData(messages).original).toBe(input.entry.original);
   });
   it('rejects malformed model edits and respects cancellation',async()=>{
     const malformed=async()=>new Response(JSON.stringify({message:{content:'{"edits":[]}'}}));

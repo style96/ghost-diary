@@ -1,10 +1,13 @@
 # Temporary recorded ghost voices
 
-These three WAV files speak only the fictional Gemma interventions from
-`src/demo/recorded.json`. They are temporary preview narration, not Gemma audio
+These three WAV files speak the **previous** fictional Gemma interventions,
+as identified by `src/demo/voices.json`. The new history-callback text in
+`src/demo/recorded.json` does not match them, so the app hides their playback
+controls. The old assets and manifest are retained unchanged until regenerated.
+They are temporary preview narration, not Gemma audio
 and not ElevenLabs output.
 
-The public demo now includes **Hear the ghost** and **Stop the ghost** controls.
+Matching recorded pages can show **Hear the ghost** and **Stop the ghost** controls.
 ElevenLabs-generated replacement voices are planned, not yet implemented.
 
 ![The recorded diary with the Hear the ghost control](../../docs/screenshots/recorded-haunting-voice.jpg)

@@ -1,6 +1,6 @@
 # Ghost Diary — evidence for the submission
 
-Status: local real inference, diary save/reopen, original comparison, restore and recorded public-demo flows verified. Thirty behavioral tests and typecheck pass; both production builds pass. On October 31, 2026, the project author reported successfully testing the local application with the internet connection disconnected. This is an author-reported manual test, not an agent-observed run.
+Status: prior local real inference, diary save/reopen, original comparison, restore and public-demo checks remain documented below. The 2026-10-31 callback update passes 80 tests and typecheck; production build results are recorded in the callback evidence. On October 31, 2026, the project author reported successfully testing the local application with the internet connection disconnected. This is an author-reported manual test, not an agent-observed run.
 
 ## 1. Show that AI is essential
 
@@ -10,7 +10,7 @@ Capture the exact local model identifier, the bounded context supplied, validate
 
 Demonstrate that stopping Ollama makes new live interventions fail clearly, while existing diary entries remain available. Do not silently fall back to recorded output. This establishes that the runtime AI performs the central transformation.
 
-Verified: gemma3:4b; three real committed recorded input/output pairs in src/demo/recorded.json; measured requests 5,528 / 7,171 / 7,998 ms (docs/model-measurements.json). Real local browser generation/compare/restore/reopen completed. Comparison and mobile screenshots are in docs/screenshots/. An actual request against a missing local model produced a recoverable error, with no generated fallback. The full suite includes revision collisions across import, deletion and synchronous storage-failure rollback.
+Updated 2026-10-31: the recorded fixtures now contain a new fictional callback sequence generated with real local gemma3:4b calls, selected from multiple candidates without editing the model text. Selected requests took 17,271 / 3,714 / 21,061 ms (docs/model-measurements.json). Full contexts, raw replies, rejected candidates and selection rationale are in [callback evidence](history-callbacks.md). Earlier real local browser generation/compare/restore/reopen checks and screenshots concern the previous fixture; this update has not been deployed. An earlier request against a missing local model produced a recoverable error, with no generated fallback. The full suite includes revision collisions across import, deletion and synchronous storage-failure rollback.
 
 ## 2. Show the practical benefit of open innovation
 
@@ -47,4 +47,3 @@ Verified saved session: 1318, tool_name codex, 45 messages, published=false (dra
 7. Explain that the domain's public examples are recorded Gemma outputs and link the local source and setup.
 
 Suggested write-up thesis, to retain only after verification: “A ghost rewrites my diary, but the model never needs to send it away.”
-

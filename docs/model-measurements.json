@@ -1,20 +1,23 @@
 [
   {
     "id": "recorded-1",
+    "attempt": 1,
     "model": "gemma3:4b",
-    "elapsedMs": 5528,
-    "generatedAt": "2026-10-30T15:39:09.599Z"
+    "elapsedMs": 17271,
+    "generatedAt": "2026-10-31T08:08:08.080Z"
   },
   {
     "id": "recorded-2",
+    "attempt": 2,
     "model": "gemma3:4b",
-    "elapsedMs": 7171,
-    "generatedAt": "2026-10-30T15:39:16.771Z"
+    "elapsedMs": 3714,
+    "generatedAt": "2026-10-31T08:08:39.970Z"
   },
   {
     "id": "recorded-3",
+    "attempt": 1,
     "model": "gemma3:4b",
-    "elapsedMs": 7998,
-    "generatedAt": "2026-10-30T15:39:24.770Z"
+    "elapsedMs": 21061,
+    "generatedAt": "2026-10-31T08:09:04.930Z"
   }
 ]

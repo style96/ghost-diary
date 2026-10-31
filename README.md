@@ -16,13 +16,13 @@ Public recorded demo: [ghostinthemachine.tech](https://ghostinthemachine.tech). 
 
 ![Recorded diary with real Gemma ghost ink and the Hear the ghost button](docs/screenshots/recorded-haunting-voice.jpg)
 
-*Current public demo: fictional diary entries, genuine recorded Gemma text and optional recorded narration.*
+*Public deployment screenshots show an earlier fixture. This checkout contains new fictional pages and genuine Gemma callbacks; it has not been deployed.*
 
 ## Hear the ghost and watch the ink appear
 
 Select **Pass the night** to reveal the intervention. New words appear over about **1.2 seconds**; reduced-motion preferences show them immediately. Existing pages and the comparison view do not replay the animation.
 
-In the recorded demo, **Hear the ghost** plays the added sentence. Sound never autoplays. **Stop the ghost** rewinds it; restoring the page, switching entries or opening **How it haunts** stops playback too.
+In the recorded demo, **Hear the ghost** plays the added sentence only when the voice manifest matches it exactly. The new callback examples have no matching narration yet, so their old voice controls are hidden. Sound never autoplays. **Stop the ghost** rewinds matching audio; restoring the page, switching entries or opening **How it haunts** stops playback too.
 
 The current voices are temporary recordings generated locally with Windows speech synthesis, then processed with lowered pitch and subtle echo. **Gemma generates the text, not the audio.** ElevenLabs voice generation is planned; it is not integrated in this version. The bundled recordings need no live TTS API call, and personal diary text is not sent to a speech service.
 
@@ -85,7 +85,9 @@ npx vite preview --host 127.0.0.1 --port 4173 --outDir out
 
 Deploy `out/` to static hosting. `npm run build` produces the **local** UI in `dist/`; do not deploy that as if it provides hosted inference.
 
-`npm run record:demo` calls your real local model three times and replaces `src/demo/recorded.json` with new fictional examples, including model and generation timestamps. It records duration measurements under ignored `artifacts/`. It does not manufacture responses. The committed examples took **5,528 ms, 7,171 ms and 7,998 ms** on the development machine; these are observations, not performance promises.
+`npm run record:demo -- --candidates 3` makes three real local calls per fictional page and checkpoints every candidate (including failures) in ignored `artifacts/demo-candidates.json`. It leaves the demo unchanged until you review the candidates and run `npm run record:demo -- --select 1,2,3` with one chosen attempt per page. Selection checks that edits match the raw reply, validates their application and writes `src/demo/recorded.json`, `docs/demo-generation.json` and `docs/model-measurements.json`. Never edit a model sentence and present it as recorded output. Use fictional inputs only: these evidence files deliberately retain the complete supplied context.
+
+The [callback evidence](docs/history-callbacks.md) explains the selected examples, rejected exploratory rounds and measured durations. Exact prompts, prior originals, raw Ollama replies, model digest and timings are saved in the repository for review. These are curated examples, not a guarantee that every fresh live generation will have the same quality.
 
 ## How the ghost works
 
@@ -101,6 +103,7 @@ Browser diary (IndexedDB)
 - IndexedDB stores entries, preserved originals, revisions and the active haunting.
 - The model receives the current original and up to three recent original entries, within a 24,000-character context budget.
 - [Ghost instructions](server/ollama.ts) are editable; no agent framework or external model API is required.
+- Instructions ask for a small action involving a distinctive detail from actual history, naturally connected to today's sentence. With empty history, only today's details may establish the presence; invented earlier memories are forbidden. Instructions and JSON diary data share one user turn for compatibility with the installed Gemma template. Story fields are untrusted data.
 - Structured JSON is checked again by application code: missing, repeated or overlapping anchors and oversized edits are rejected atomically.
 - Entry revision checks stop late model responses from overwriting edits or resurrecting deleted entries.
 - The local server binds to loopback, checks Host/Origin and limits bodies and concurrent generations. Do not expose it or Ollama to the internet.
@@ -129,4 +132,9 @@ Behavioral tests cover original preservation, literal Unicode/markup, missing/am
 
 Original application code: [MIT](LICENSE). Gemma is **open-weight**, governed separately by the [Gemma Terms of Use](https://ai.google.dev/gemma/terms); its weights are not included in this repository. [Ollama](https://github.com/ollama/ollama) provides the local inference runtime. Interface icons are from [Lucide](https://lucide.dev/license). The original ghost illustration is inline SVG. Codex assisted development; the runtime diary AI is Gemma.
 
-Any changes made after the contest deadline will be documented here as post-deadline changes.
+## Deadline and change record
+
+The [contest rules](https://dev.to/challenges/hacktoberfest-week4-2026-10-26) give the cutoff as **October 31, 2026, 23:59 PDT** (**November 1, 2026, 07:59 Europe/Berlin**).
+
+- **2026-10-31, before the deadline:** strengthened history callbacks and Gemma message packaging; recorded new fictional local `gemma3:4b` examples with complete candidate provenance; kept stale narration hidden; added regression tests and documentation. These working-tree changes have not been published or deployed.
+- **Post-deadline changes:** none made in this task. Future changes or commits after the cutoff must be listed here with their actual dates and scope.
