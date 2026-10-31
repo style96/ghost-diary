@@ -1,5 +1,19 @@
 # Publication status
 
+## Render deployment — 2026-10-31, domain cutover pending
+
+The same recorded demo is now live at https://ghost-diary.onrender.com.
+Service `srv-dbitepg473hc73ajfnmg`, deployment
+`dep-dbitepo473hc73ajfo20`, source GitHub commit
+`db6ffe1ff4ce33fb40002a0f81444eea4e37bc23`. The dashboard reported **Live**;
+HTTP verification at 11:57:35 UTC confirmed the exact recorded JavaScript
+bundle and SHA-256 matches for all three served MP3s. The configured Linux
+install/test/build pipeline completed with Node.js 24.22.2.
+
+The apex domain and `www` were added to Render, but DNS still routes the apex
+to Sites. DNS-provider sign-in is required before cutover. Do not treat the
+custom domain as migrated yet. See [migration record](render-migration.md).
+
 ## Latest deployment — version 4, 2026-10-31
 
 Published successfully at **11:04:22 UTC / 12:04:22 Europe/Berlin** while preserving the existing public audience and domain bindings.

@@ -1,13 +1,30 @@
 # Render migration
 
-Status: prepared, not deployed. The current custom domain remains on Sites
-until the Render deployment is verified. Do not describe Render as the live
-host or enter its prize category until publication is confirmed.
+Status: Render deployed and verified; custom-domain DNS cutover pending.
+The custom domain still routes to Sites until its DNS records are updated.
+
+## Verified Render publication — 2026-10-31
+
+- URL: https://ghost-diary.onrender.com
+- Service: `srv-dbitepg473hc73ajfnmg`.
+- Deployment: `dep-dbitepo473hc73ajfo20`, dashboard status **Live**.
+- Source: `db6ffe1ff4ce33fb40002a0f81444eea4e37bc23`, GitHub branch `main`.
+- Render's Linux build used Node.js **24.22.2** and completed the configured
+  install, test and recorded-build command successfully.
+- At 11:57:35 UTC, the site returned HTTP 200. Its
+  `/assets/index-Blq2uZKr.js` matched the local recorded build exactly. All
+  three MP3s returned HTTP 200 with the exact source SHA-256 hashes recorded
+  in [release verification](release-verification.md).
+- `ghostinthemachine.tech` and its automatic `www` redirect were added to
+  this service. DNS verification is pending. Render requests apex A
+  `216.24.57.1` and `www` CNAME `ghost-diary.onrender.com`.
+- GitHub App access was explicitly approved for only `style96/ghost-diary`.
 
 Preparation verified on 2026-10-31: `render.yaml` passed the current official
 Render Blueprint JSON Schema, and `npm run build:demo` passed with the same
-`index-Blq2uZKr.js` bundle as the verified Sites release. Render account access
-has not yet been connected; no Render service or DNS change is claimed.
+`index-Blq2uZKr.js` bundle as the verified Sites release. Account access was
+subsequently established through the user's Chrome session. The static site
+was configured in the dashboard with the same settings as `render.yaml`.
 
 ## Service
 

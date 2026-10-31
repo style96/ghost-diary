@@ -87,7 +87,7 @@ npx vite preview --host 127.0.0.1 --port 4173 --outDir out
 
 Deploy `out/` to static hosting. `npm run build` produces the **local** UI in `dist/`; do not deploy that as if it provides hosted inference.
 
-For Render, [`render.yaml`](render.yaml) configures the recorded static demo with Node.js 24, tests before each build, and automatic deployment from `main`. The [Render migration notes](docs/render-migration.md) describe verification and domain cutover; the current live host remains Sites until that cutover is confirmed.
+The recorded demo is also live at [ghost-diary.onrender.com](https://ghost-diary.onrender.com). [`render.yaml`](render.yaml) records its Node.js 24, test-before-build and `main` deployment settings. The [Render migration notes](docs/render-migration.md) track the verified publication and pending domain cutover; `ghostinthemachine.tech` remains on Sites until that cutover is confirmed.
 
 `npm run record:demo -- --candidates 3` makes three real local calls per fictional page and checkpoints every candidate (including failures) in ignored `artifacts/demo-candidates.json`. It leaves the demo unchanged until you review the candidates and run `npm run record:demo -- --select 1,2,3` with one chosen attempt per page. Selection checks that edits match the raw reply, validates their application and writes `src/demo/recorded.json`, `docs/demo-generation.json` and `docs/model-measurements.json`. Never edit a model sentence and present it as recorded output. Use fictional inputs only: these evidence files deliberately retain the complete supplied context.
 
