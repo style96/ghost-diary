@@ -1,5 +1,21 @@
 # Publication status
 
+## Latest deployment — 2026-10-31
+
+Sites version **3** was deployed successfully at **08:42:45 UTC / 09:42:45 Europe/Berlin** on the user's explicit request.
+
+- Live custom domain: https://ghostinthemachine.tech
+- Sites production URL: https://ghost-diary-ghostinthemachine.rarebloom15.chatgpt.site
+- Approved GitHub content commit: `ab97d3cacaf6c07d39be83c41bc62246692ffa87`.
+- Sites source commit: `2d44d6e67ad51f3a8a411a099f32d8ccff39cf06`; a history-reconciliation merge whose complete file tree was verified identical to the approved GitHub commit. Neither remote history was force-pushed.
+- Saved version: `appgprj_6ae4b997b8808191b8a9827d4eb26129~appgver_18f8dbf10c708191bdd6eb4fd7bddef0`.
+- Deployment: `appgdep_6ae5a9f8864c8191a6fde256ff501dc0`, status `succeeded`.
+- Artifact SHA-256: `8a20bc4ee2d5bb6283928de663ac37c048323beda034971d464ee093f2bbdb0a`.
+
+Built in an isolated checkout with `npm run build:demo`. Public access and existing domain bindings were preserved. A fresh HTTP check on the custom domain returned 200 and `/assets/index-DnSvw4Qn.js`; that served bundle contains all three exact selected Gemma interventions. The new sentences have no matching old narration, so their audio controls stay hidden. Browser interaction was not repeated during this deploy. Concurrent ElevenLabs work in the main workspace was excluded.
+
+## Earlier deployment and domain setup
+
 - GitHub source: https://github.com/style96/ghost-diary
 - Sites project: appgprj_6ae4b997b8808191b8a9827d4eb26129
 - Verified deployed, public Sites URL: https://ghost-diary-ghostinthemachine.rarebloom15.chatgpt.site

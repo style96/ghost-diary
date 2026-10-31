@@ -3,7 +3,9 @@
 All pages are fiction. All quoted interventions below are **unchanged real local
 Ollama outputs**, not sentences written or polished by the developer. The diary
 dates are fictional story dates; `generatedAt` records the actual generation time.
-Nothing from this task has been deployed, published or shared to DEV.
+The original recording task did not deploy or share to DEV. On the user's later
+request, the approved callback fixtures were deployed as Sites version 3; see
+[deployment provenance](deployment.md). No DEV post or session was shared.
 
 ## The selected sequence
 

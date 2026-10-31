@@ -16,7 +16,7 @@ Public recorded demo: [ghostinthemachine.tech](https://ghostinthemachine.tech). 
 
 ![Recorded diary with real Gemma ghost ink and the Hear the ghost button](docs/screenshots/recorded-haunting-voice.jpg)
 
-*Public deployment screenshots show an earlier fixture. This checkout contains new fictional pages and genuine Gemma callbacks; it has not been deployed.*
+*Public deployment screenshots show an earlier fixture. The new fictional pages and genuine Gemma callbacks were deployed on 2026-10-31; see the deployment notes for version provenance.*
 
 ## Hear the ghost and watch the ink appear
 
@@ -136,5 +136,5 @@ Original application code: [MIT](LICENSE). Gemma is **open-weight**, governed se
 
 The [contest rules](https://dev.to/challenges/hacktoberfest-week4-2026-10-26) give the cutoff as **October 31, 2026, 23:59 PDT** (**November 1, 2026, 07:59 Europe/Berlin**).
 
-- **2026-10-31, before the deadline:** strengthened history callbacks and Gemma message packaging; recorded new fictional local `gemma3:4b` examples with complete candidate provenance; kept stale narration hidden; added regression tests and documentation. These working-tree changes have not been published or deployed.
+- **2026-10-31, before the deadline:** strengthened history callbacks and Gemma message packaging; recorded new fictional local `gemma3:4b` examples with complete candidate provenance; kept stale narration hidden; added regression tests and documentation. Committed and pushed as `ab97d3c`, then deployed as Sites version 3 on the user's subsequent request. New ElevenLabs work was excluded from this deployment.
 - **Post-deadline changes:** none made in this task. Future changes or commits after the cutoff must be listed here with their actual dates and scope.

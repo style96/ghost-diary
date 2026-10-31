@@ -21,4 +21,5 @@ empty third hook; on page 3, reveal the straightening after the locked cupboard.
 Use comparison and restore to show the original remains intact. The exact lines,
 selection and actual supplied history are documented in [callback evidence](history-callbacks.md).
 The old voice recordings do not match these lines, so their controls are hidden.
-This checkout has not been deployed; existing public screenshots show older text.
+These fixtures were deployed as Sites version 3 on 2026-10-31; existing public
+screenshots show older text. See [deployment provenance](deployment.md).
