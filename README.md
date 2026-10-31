@@ -18,15 +18,17 @@ Public recorded demo: [ghostinthemachine.tech](https://ghostinthemachine.tech). 
 
 *Public deployment screenshots show an earlier fixture. The new fictional pages and genuine Gemma callbacks were deployed on 2026-10-31; see the deployment notes for version provenance.*
 
+[Watch the 90-second English demo](deliverables/ghost-diary-demo.mp4) · [English captions](deliverables/ghost-diary-demo.en.srt) · [Editable video source](deliverables/ghost-diary-video-source.zip)
+
 ## Hear the ghost and watch the ink appear
 
 Select **Pass the night** to reveal the intervention. New words appear over about **1.2 seconds**; reduced-motion preferences show them immediately. Existing pages and the comparison view do not replay the animation.
 
-In the recorded demo, **Hear the ghost** plays the added sentence only when the voice manifest matches it exactly. The new callback examples have no matching narration yet, so their old voice controls are hidden. Sound never autoplays. **Stop the ghost** rewinds matching audio; restoring the page, switching entries or opening **How it haunts** stops playback too.
+In the recorded demo, **Hear the ghost** plays the added sentence only when the voice manifest matches it exactly. The current three examples have matching ElevenLabs soft-whisper recordings. In the local Windows app, the same button generates the current ghost insertion using the original Windows desktop speech pipeline. Sound never autoplays. **Stop the ghost** rewinds audio; restoring the page, editing, switching entries or opening **How it haunts** stops playback too.
 
-The current voices are temporary recordings generated locally with Windows speech synthesis, then processed with lowered pitch and subtle echo. **Gemma generates the text, not the audio.** ElevenLabs voice generation is planned; it is not integrated in this version. The bundled recordings need no live TTS API call, and personal diary text is not sent to a speech service.
+**Gemma generates the text, not the audio.** The recorded demo bundles ElevenLabs Sarah soft-whisper MP3s. The local app reuses the pre-ElevenLabs Windows default desktop voice, rate -1 and volume 90, with the existing slowdown, filter and quiet delayed layers. There is no background soundtrack or new sound design. Local speech needs Windows desktop speech and Python 3, sends only the ghost insertion to the loopback server after a click, and makes no external speech API request. Its temporary files are removed after generation; the browser releases generated audio on navigation or cancellation. Other platforms can still use the text diary, but this speech path is Windows-only.
 
-Audio files, provenance and regeneration: [audio README](public/audio/README.md). The [voice manifest](src/demo/voices.json) must match the exact spoken sentence; stale audio is hidden after demo text changes. The local application animates new ink, but does not play unrelated demo recordings for personal entries.
+Audio files, provenance and regeneration: [audio README](public/audio/README.md). The [voice manifest](src/demo/voices.json) must match the exact spoken sentence; stale audio is hidden after demo text changes. Personal entries use newly generated local audio, never unrelated demo recordings.
 
 <details>
 <summary>Mobile recorded demo</summary>
@@ -116,6 +118,18 @@ With dependencies, model weights and the production build already installed, the
 
 The public website is separately hosted and uses fictional recorded fixtures. DevRelay, when connected, shares a curated **development transcript**, not your personal diary. No per-request hosted AI fee is required locally; hardware, electricity and domain renewal still have costs.
 
+## Recorded ElevenLabs narration
+
+The optional offline command `npm run record:voices` generates three MP3 clips
+from the current fictional ghost insertions using the official ElevenLabs SDK.
+Run `npx -y @elevenlabs/cli@latest onboard init` for account setup, then
+`npm run record:voices:dry` to inspect the text without spending quota or loading credentials.
+The command loads credentials from ignored `.env.local` in Node; browser playback
+uses bundled audio and sends no request to ElevenLabs. Three real Sarah-voice
+MP3s were generated on 2026-10-31 and now match the current demo insertions;
+the older Windows WAV assets are retained but no longer referenced.
+See [audio setup and generation](public/audio/README.md).
+
 ## Verification
 
 ```sh
@@ -138,3 +152,4 @@ The [contest rules](https://dev.to/challenges/hacktoberfest-week4-2026-10-26) gi
 
 - **2026-10-31, before the deadline:** strengthened history callbacks and Gemma message packaging; recorded new fictional local `gemma3:4b` examples with complete candidate provenance; kept stale narration hidden; added regression tests and documentation. Committed and pushed as `ab97d3c`, then deployed as Sites version 3 on the user's subsequent request. New ElevenLabs work was excluded from this deployment.
 - **Post-deadline changes:** none made in this task. Future changes or commits after the cutoff must be listed here with their actual dates and scope.
+- **2026-10-31, before the deadline:** added approved ElevenLabs soft-whisper recordings for the three recorded examples, reused the original Windows speech pipeline for local entries, and produced a 90-second English narrated demo with captions and editable source. Verified 135 tests and both builds. This repository update does not deploy the hosted site.

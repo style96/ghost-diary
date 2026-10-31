@@ -1,0 +1,107 @@
+1
+00:00:00,600 --> 00:00:03,000
+Most diaries have one author.
+
+2
+00:00:03,120 --> 00:00:05,160
+This one sometimes has two.
+
+3
+00:00:07,500 --> 00:00:09,580
+This is Ghost Diary.
+
+4
+00:00:09,660 --> 00:00:11,980
+I start with an ordinary page: a
+
+5
+00:00:12,060 --> 00:00:14,780
+yellow umbrella, a chipped blue cup, and
+
+6
+00:00:14,820 --> 00:00:17,020
+the quiet rituals before bed.
+
+7
+00:00:23,500 --> 00:00:25,260
+On the next page, the hook is
+
+8
+00:00:25,340 --> 00:00:26,100
+empty.
+
+9
+00:00:26,380 --> 00:00:28,380
+I save my words, then pass the
+
+10
+00:00:28,460 --> 00:00:29,220
+night.
+
+11
+00:00:29,660 --> 00:00:32,460
+Gemma runs locally, reading this entry and
+
+12
+00:00:32,540 --> 00:00:33,980
+a little of its history.
+
+13
+00:00:40,400 --> 00:00:42,880
+It leaves a sentence I never wrote,
+
+14
+00:00:42,960 --> 00:00:45,600
+and remembers the umbrella's bent spoke.
+
+15
+00:00:48,000 --> 00:00:52,600
+I traced the bent spoke with my finger.
+
+16
+00:00:54,400 --> 00:00:56,560
+My original is untouched.
+
+17
+00:00:56,600 --> 00:00:59,040
+I can see exactly what changed, compare
+
+18
+00:00:59,120 --> 00:01:01,680
+both versions, and restore my own words
+
+19
+00:01:01,760 --> 00:01:03,040
+with a single click.
+
+20
+00:01:08,400 --> 00:01:10,160
+The diary stays in my browser.
+
+21
+00:01:10,560 --> 00:01:12,840
+Gemma writes locally through Ollama.
+
+22
+00:01:13,040 --> 00:01:15,120
+Windows speech gives the added sentence a
+
+23
+00:01:15,200 --> 00:01:17,360
+voice, right on this device.
+
+24
+00:01:21,400 --> 00:01:22,760
+A private notebook.
+
+25
+00:01:23,160 --> 00:01:24,760
+An uninvited author.
+
+26
+00:01:25,320 --> 00:01:26,280
+Ghost Diary.
+
+27
+00:01:26,760 --> 00:01:29,240
+Your words, until they're not.

@@ -46,7 +46,7 @@ The ghost's new sentence now appears with a short ink animation. It takes about 
 
 After revealing an entry, select **Hear the ghost** to listen to its added sentence. Sound is optional and never autoplays. **Stop the ghost** rewinds it, and restoring the original, changing pages or opening **How it haunts** stops playback.
 
-The current three voices are temporary recordings made with local Windows speech synthesis and processed with a subtle lowered pitch and echo. Gemma generates the words; it does not generate the audio. I plan to replace these recordings with ElevenLabs-generated voices once that step is ready. ElevenLabs is not integrated in the current version.
+The current three MP3 voices were generated offline with ElevenLabs using the premade Sarah voice and `eleven_v4` on October 31, 2026. They use a soft whisper delivery, without background music or added horror effects. Gemma generates the words; ElevenLabs generates the narration. The official SDK sends only the three fictional ghost insertions with a whisper delivery tag, then saves bundled audio and a matching manifest. Historical Windows speech recordings remain in the repository but are no longer referenced. The published demo has not been updated by this local change.
 
 The recordings are bundled with the public demo, so playback needs no live speech-generation API call. Personal diary entries in the local application are not sent to a voice provider or paired with unrelated demo recordings.
 

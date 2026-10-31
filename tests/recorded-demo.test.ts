@@ -4,6 +4,10 @@ import evidence from '../docs/demo-generation.json';
 import {applyHaunting} from '../src/domain/haunting';
 import {entrySchema,type Edit} from '../src/domain/diary';
 import {getRecordedVoice} from '../src/demo/voices';
+import voices from '../src/demo/voices.json';
+import {readFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import {resolve} from 'node:path';
 import {stories} from '../scripts/demo-stories';
 
 describe('committed fictional Gemma recordings',()=>{
@@ -27,7 +31,16 @@ describe('committed fictional Gemma recordings',()=>{
       expect(applyHaunting(entry.original,entry.haunting.edits as Edit[])).toBe(entry.haunting.text);
     }
   });
-  it('hides the old spoken sentences for all three new examples',()=>{
-    for(const entry of recorded)expect(getRecordedVoice(entry as never)).toBeUndefined();
+  it('offers matching ElevenLabs MP3s and hides narration after the intervention changes',()=>{
+    for(const entry of recorded){
+      const voice=voices.find(v=>v.id===entry.id)!;
+      expect(voice.text).toBe(entry.haunting.edits.map(e=>e.text).join(' '));
+      expect(getRecordedVoice(entry as never)).toMatchObject({src:voice.src,provider:'elevenlabs'});
+      const clip=readFileSync(resolve('public',voice.src.slice(1)));
+      expect(clip.length).toBeGreaterThan(1000);
+      expect(voice.src).toContain(createHash('sha256').update(clip).digest('hex').slice(0,12));
+      const changed={...entry,haunting:{...entry.haunting,edits:entry.haunting.edits.map(e=>({...e,text:'A changed intervention.'}))}};
+      expect(getRecordedVoice(changed as never)).toBeUndefined();
+    }
   });
 });

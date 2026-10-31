@@ -1,5 +1,10 @@
 # Ghost Diary — short real-inference demo
 
+Completed on 2026-10-31: a 90-second English narrated demo is available locally
+at `deliverables/ghost-diary-demo.mp4`, with SRT, poster and editable source ZIP.
+See [the final storyboard and production evidence](video-demo-storyboard.md).
+The historical outline below predates that recording.
+
 Target length: 60–90 seconds. Use fictional text. This is a recording script, not a claim that a video has already been captured.
 
 1. **0–10s:** Show the local URL and the connected Gemma status. Say: “This is Ghost Diary. I write the diary. A local model writes something I didn't.”

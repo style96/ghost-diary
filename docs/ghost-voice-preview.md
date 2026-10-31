@@ -14,14 +14,21 @@ The new words appear over about 1.2 seconds. Select **Hear the ghost** to play
 that sentence; select **Stop the ghost** to stop and rewind it. Restoring the
 page, switching pages, or opening **How it haunts** also stops playback.
 
-The three voices are temporary locally synthesized recordings. No ElevenLabs
-integration or live speech generation is included. No audio autoplays, and no
-private diary text is sent to a service. The local live application also shows
-the ink animation on new hauntings, but does not use demo voices for personal
-entries. Reduced-motion preferences show ink immediately.
+The active three MP3 voices were generated offline with ElevenLabs (Sarah,
+`eleven_v4`, soft whisper delivery) on 2026-10-31 and match the current ghost insertions.
+There is no background soundtrack, added echo or pitch processing.
+Regenerate through `npm run record:voices`. Historical Windows WAV files are
+retained but no longer referenced. No live speech generation is included.
+No audio autoplays, and no
+private diary text is sent to an external service. The local Windows application
+uses the original Windows speech pipeline on demand for current ghost insertions,
+and shows the ink animation on new hauntings. It does not use demo voices for
+personal entries. Python 3 and installed Windows desktop speech are required.
+Reduced-motion preferences show ink immediately.
 
 Audio source and regeneration instructions: `public/audio/README.md`.
-To replace the voice later, update the WAV files and `src/demo/voices.json`.
+To replace the voice, follow the ElevenLabs setup in `public/audio/README.md`;
+the command writes MP3 files and updates `src/demo/voices.json` together.
 Keep manifest text equal to the spoken sentence; stale recordings are hidden
 when the current demo text no longer matches.
 

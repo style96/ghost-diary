@@ -1,5 +1,29 @@
 [
-  {"id":"recorded-1","src":"/audio/recorded-1.wav","text":"Someone else was reading the same page."},
-  {"id":"recorded-2","src":"/audio/recorded-2.wav","text":"Someone else always answers the door."},
-  {"id":"recorded-3","src":"/audio/recorded-3.wav","text":"Someone else is reading your thoughts, I suspect."}
+  {
+    "id": "recorded-1",
+    "src": "/audio/recorded-1-elevenlabs-455aaf26-e299-4cc1-8cfc-000e6a032f51-9030069ab1f0.mp3",
+    "text": "I gently touched the bent spoke.",
+    "provider": "elevenlabs",
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "modelId": "eleven_v4",
+    "delivery": "whisper"
+  },
+  {
+    "id": "recorded-2",
+    "src": "/audio/recorded-2-elevenlabs-455aaf26-e299-4cc1-8cfc-000e6a032f51-542ccb74cabb.mp3",
+    "text": "I examined the bent spoke of the umbrella.",
+    "provider": "elevenlabs",
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "modelId": "eleven_v4",
+    "delivery": "whisper"
+  },
+  {
+    "id": "recorded-3",
+    "src": "/audio/recorded-3-elevenlabs-455aaf26-e299-4cc1-8cfc-000e6a032f51-761aef82696c.mp3",
+    "text": "I straightened the bent spoke on the umbrella.",
+    "provider": "elevenlabs",
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "modelId": "eleven_v4",
+    "delivery": "whisper"
+  }
 ]

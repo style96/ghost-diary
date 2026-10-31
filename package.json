@@ -12,9 +12,12 @@
     "start": "tsx server/index.ts",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
-    "record:demo": "tsx scripts/record-demo.ts"
+    "record:demo": "tsx scripts/record-demo.ts",
+    "record:voices": "node --env-file=.env.local --import tsx scripts/record-elevenlabs.ts",
+    "record:voices:dry": "tsx scripts/record-elevenlabs.ts --dry-run"
   },
   "dependencies": {
+    "@elevenlabs/elevenlabs-js": "^2.75.0",
     "idb": "^8.0.3",
     "lucide-react": "^0.468.0",
     "react": "^19.2.0",

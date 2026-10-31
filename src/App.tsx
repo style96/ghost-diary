@@ -7,6 +7,7 @@ import {getStatus,haunt} from './api/ghost';
 import {HauntedText,HauntingCompare} from './components/HauntingCompare';
 import {GhostVoice} from './components/GhostVoice';
 import {getRecordedVoice} from './demo/voices';
+import {getLocalVoice} from './audio/local-voice';
 import recordedData from './demo/recorded.json';
 const recorded=__RECORDED__;
 const samples=validateEntries(recordedData);
@@ -21,7 +22,7 @@ export default function App(){
   const upload=useRef<HTMLInputElement>(null),controller=useRef<AbortController|null>(null);
   const current=entries.find(e=>e.id===selected);
   const shown=current&&(!recorded||revealed.has(current.id))?current:current?{...current,haunting:undefined}:undefined;
-  const voice=recorded&&shown?getRecordedVoice(shown):undefined;
+  const voice=!editing&&shown?(recorded?getRecordedVoice(shown):getLocalVoice(shown)):undefined;
   const dirty=editing&&(text!==(current?.original||'')||title!==(current?.title||''));
   const refresh=async()=>{const all=await store.listEntries();setEntries(all);return all};
   const checkConnection=async()=>{try{setStatus(await getStatus())}catch{setStatus({available:false,model:'Gemma',message:'Start the local server and Ollama.'})}};
@@ -78,7 +79,7 @@ export default function App(){
           <div className="paper-content">
             <div className="entry-heading">{editing?<input aria-label="Entry title" placeholder="Give today a name…" value={title} maxLength={120} onChange={e=>setTitle(e.target.value)}/>:<h2>{current?.title||'A page of your own'}</h2>}<Feather className="heading-feather" size={25} strokeWidth={1}/></div>
             <div className="entry-body">{editing?<textarea aria-label="Diary text" placeholder={'Dear diary,\n\nSomething ordinary happened today…'} value={text} maxLength={12000} onChange={e=>setText(e.target.value)}/>:shown?<p><HauntedText key={`${shown.id}:${shown.haunting?.generatedAt||'quiet'}`} entry={shown} animate={inkEntry===shown.id}/></p>:<p className="empty-paper">Every haunting starts with a few words.</p>}</div>
-            {voice&&<GhostVoice key={shown!.id} voice={voice}/>}
+            {voice&&<GhostVoice key={`${shown!.id}:${shown!.revision}:${shown!.haunting?.generatedAt}`} voice={voice}/>}
             {!editing&&shown?.haunting&&<div className="ghost-note"><span>✧</span><p>You’re not the only one<br/>keeping a diary.</p></div>}
             <div className="paper-bottom"><span>{editing?`${text.length.toLocaleString()} / 12,000 characters`:'— End of entry —'}</span><span className="page-number">{current?String(entries.findIndex(e=>e.id===current.id)+1).padStart(2,'0'):'01'}</span></div>
           </div>

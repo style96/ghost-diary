@@ -1,0 +1,21 @@
+{
+  "durationSeconds": 90,
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "videoCodec": "H.264",
+  "audioCodec": "AAC",
+  "audioSampleRate": 48000,
+  "channels": 2,
+  "fullDecodePassed": true,
+  "captionGroups": 27,
+  "bytes": 24250546,
+  "sha256": "269292ad695571e1f1c7974421be07cb25031316337d0640e1f2b01e3d2575a9",
+  "sourceArchiveEntries": 47,
+  "voiceover": "ElevenLabs Sarah / eleven_v4",
+  "appSpeech": "actual local Windows-generated WAV",
+  "soundtrack": false,
+  "privacy": "Only the two fictional recording-context entries are shown.",
+  "captureMethod": "Timestamped browser screenshots encoded into footage; sampling roughly 7\u20138 fps, delivered at 30 fps.",
+  "waitEdit": "Generation wait shortened and labeled on screen."
+}
