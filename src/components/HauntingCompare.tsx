@@ -1,12 +1,12 @@
 import type {Entry} from '../domain/diary';
-export function HauntedText({entry}:{entry:Entry}){
+export function HauntedText({entry,animate=false}:{entry:Entry;animate?:boolean}){
   if(!entry.haunting)return <>{entry.original}</>;
   const edits=entry.haunting.edits.map(edit=>({edit,start:entry.original.indexOf(edit.target)})).sort((a,b)=>a.start-b.start);
   const parts:React.ReactNode[]=[];let position=0;
   for(const {edit,start} of edits){
     parts.push(entry.original.slice(position,start));
     if(edit.kind==='insertAfter')parts.push(edit.target,' ');
-    parts.push(<mark className="ghost-ink" key={start}>{edit.text}</mark>);
+    parts.push(<mark className={`ghost-ink ${animate?'fresh-ink':''}`} key={start}>{animate?<><span className="sr-only">{edit.text}</span><span aria-hidden="true">{edit.text.split(/(\s+)/).map((word,i)=>/^\s+$/.test(word)?word:<span className="ink-word" style={{animationDelay:`${Math.min(i*32,600)}ms`}} key={i}>{word}</span>)}</span></>:edit.text}</mark>);
     position=start+edit.target.length;
   }
   parts.push(entry.original.slice(position));return <>{parts}</>;

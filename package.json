@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
+    "dev:demo": "vite --mode recorded --host 127.0.0.1 --port 4174 --strictPort",
     "dev:server": "tsx watch server/index.ts",
     "build": "tsc --noEmit && vite build",
     "build:demo": "tsc --noEmit && vite build --mode recorded --outDir out",
