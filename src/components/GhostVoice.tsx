@@ -42,6 +42,6 @@ export function GhostVoice({voice}:{voice:RecordedVoice}){
     <audio ref={audio} src={voice.src||undefined} preload="none" aria-label={voice.label}
       onEnded={()=>setState('idle')} onPause={()=>setState('idle')}
       onError={()=>{setError(true);setState('idle')}}/>
-    <p className="voice-footnote" role={error?'status':undefined}>{error?(voice.provider==='windows'?'The voice could not be prepared. Check Windows speech and Python 3, then try again.':'The voice could not be played. Try again.'):voice.provider==='windows'?'Optional sound · Windows voice · generated on this device':voice.provider==='elevenlabs'?'Optional sound · recorded ElevenLabs voice · plays on this device':'Optional sound · temporary synthesized voice · plays on this device'}</p>
+    <p className="voice-footnote" role={error?'status':undefined}>{error?(voice.provider==='windows'?'The voice could not be prepared. Check Windows speech, then try again.':'The voice could not be played. Try again.'):voice.provider==='windows'?'Optional sound · Windows voice · generated on this device':voice.provider==='elevenlabs'?'Optional sound · recorded ElevenLabs voice · plays on this device':'Optional sound · temporary synthesized voice · plays on this device'}</p>
   </div>;
 }

@@ -54,7 +54,7 @@ The new ink appears over about 1.2 seconds; reduced-motion preferences show it i
 
 The website bundles three ElevenLabs Sarah soft-whisper MP3s, generated from the exact fictional insertions with `eleven_v4`. A manifest check hides playback if a recording no longer matches the displayed sentence. Playback makes no live ElevenLabs API call.
 
-In the local Windows application, Windows desktop speech and Python 3 generate each new ghost insertion's voice on the device. Personal diary text is not sent to ElevenLabs. The video uses that actual local speech for the ghost, with separate ElevenLabs explanatory narration.
+In the local Windows application, Windows desktop speech generate each new ghost insertion's voice on the device. Personal diary text is not sent to ElevenLabs. The video uses that actual local speech for the ghost, with separate ElevenLabs explanatory narration.
 
 ## Code
 
@@ -95,7 +95,7 @@ npm run build
 npm start
 ```
 
-Keep Ollama running and open `http://127.0.0.1:3001`. Write, save, then pass the night. Optional local speech requires Windows desktop speech and Python 3.
+Keep Ollama running and open `http://127.0.0.1:3001`. Write, save, then pass the night. Optional local speech requires Windows desktop speech.
 
 ## Why Does Open Innovation Matter?
 

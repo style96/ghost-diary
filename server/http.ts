@@ -22,7 +22,7 @@ export async function handleApi(request:Request,deps:Dependencies={generate:gene
     try{
       const audio=await (deps.voice??synthesizeWindowsVoice)(input.text,request.signal);
       return new Response(new Uint8Array(audio),{headers:{'Content-Type':'audio/wav','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
-    }catch{return json({error:'The voice could not be prepared. Windows desktop speech and Python 3 are required. Try again.'},503)}
+    }catch{return json({error:'The voice could not be prepared. Windows desktop speech are required. Try again.'},503)}
     finally{speaking=false}
   }
   let input;try{input=inputSchema.parse(JSON.parse(text))}catch{return json({error:'Invalid diary request.'},400)}

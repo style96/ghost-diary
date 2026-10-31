@@ -21,9 +21,9 @@ Regenerate through `npm run record:voices`. Historical Windows WAV files are
 retained but no longer referenced. No live speech generation is included.
 No audio autoplays, and no
 private diary text is sent to an external service. The local Windows application
-uses the original Windows speech pipeline on demand for current ghost insertions,
+uses the normal Windows speech voice without added effects on demand for current ghost insertions,
 and shows the ink animation on new hauntings. It does not use demo voices for
-personal entries. Python 3 and installed Windows desktop speech are required.
+personal entries. Installed Windows desktop speech is required.
 Reduced-motion preferences show ink immediately.
 
 Audio source and regeneration instructions: `public/audio/README.md`.
