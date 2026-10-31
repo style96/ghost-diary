@@ -83,7 +83,7 @@ Browser diary (IndexedDB)
 
 In local mode, this app sends diary text only to the local Node server and local Ollama. No hosted model endpoint, third-party analytics, external fonts or API key is needed. Browser storage is **not encrypted** and is not a substitute for device security. Clearing browser data can erase your diary. Export a JSON backup and store it safely; backups contain plain text.
 
-With dependencies, model weights and the production build already installed, the local experience does not need an internet connection. On October 31, 2026, the project author reported testing the local application with the internet connection disconnected and confirmed that it continued working successfully.
+With dependencies, model weights and the production build already installed, the local experience does not need an internet connection.
 
 The public website is separately hosted and uses fictional recorded fixtures. DevRelay, when connected, shares a curated **development transcript**, not your personal diary. No per-request hosted AI fee is required locally; hardware, electricity and domain renewal still have costs.
 
