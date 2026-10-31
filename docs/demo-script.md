@@ -25,6 +25,7 @@ in order. On page 1, notice the bent spoke; on page 2, reveal the line after the
 empty third hook; on page 3, reveal the straightening after the locked cupboard.
 Use comparison and restore to show the original remains intact. The exact lines,
 selection and actual supplied history are documented in [callback evidence](history-callbacks.md).
-The old voice recordings do not match these lines, so their controls are hidden.
-These fixtures were deployed as Sites version 3 on 2026-10-31; existing public
-screenshots show older text. See [deployment provenance](deployment.md).
+The current ElevenLabs recordings match all three lines exactly. The website
+replays those clips; the local Windows app generates speech for fresh insertions
+on the device. Existing screenshots show older text; the delivered video shows
+the real local workflow with a separate generation. See [deployment provenance](deployment.md).

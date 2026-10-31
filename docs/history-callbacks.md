@@ -110,10 +110,11 @@ prompt forbids invented past memories when history is empty; that instruction
 is not represented as a universal semantic guarantee. The recorded first page
 was reviewed against that criterion.
 
-The old WAV files and `src/demo/voices.json` are unchanged. They speak earlier
-sentences, so `getRecordedVoice` hides playback for all three new fixtures.
-Regenerate narration before offering it for these sentences. Recorded mode
-remains a static replay; fresh generation still requires local Ollama.
+The earlier Windows demo recordings were subsequently superseded by three
+ElevenLabs Sarah soft-whisper MP3s. `src/demo/voices.json` now matches every
+selected sentence exactly. Playback still requires that exact match; stale
+audio stays hidden. Recorded mode remains a static replay; fresh generation
+still requires local Ollama. See [audio provenance](../public/audio/README.md).
 
 ## Verification for this update
 

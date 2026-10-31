@@ -1,6 +1,6 @@
 # Ghost Diary — evidence for the submission
 
-Status: prior local real inference, diary save/reopen, original comparison, restore and public-demo checks remain documented below. The 2026-10-31 callback update passes 80 tests and typecheck; production build results are recorded in the callback evidence. On October 31, 2026, the project author reported successfully testing the local application with the internet connection disconnected. This is an author-reported manual test, not an agent-observed run.
+Status: final verification on 2026-10-31 passed **135 tests in 21 files**, typecheck, the local build and the recorded-demo build. The 90-second delivered MP4 decoded completely without errors and its SHA-256 matches `deliverables/verification.json`. See [release verification](release-verification.md) for publication synchronization and its limits. Prior local real inference, diary save/reopen, comparison and restore checks remain documented below. The author reported successful operation with the internet disconnected; that is an author-reported manual test, not an agent-observed run.
 
 ## 1. Show that AI is essential
 

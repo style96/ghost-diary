@@ -16,7 +16,7 @@ Public recorded demo: [ghostinthemachine.tech](https://ghostinthemachine.tech). 
 
 ![Recorded diary with real Gemma ghost ink and the Hear the ghost button](docs/screenshots/recorded-haunting-voice.jpg)
 
-*Public deployment screenshots show an earlier fixture. The new fictional pages and genuine Gemma callbacks were deployed on 2026-10-31; see the deployment notes for version provenance.*
+*Screenshots above and below show an earlier fixture. Sites version 4 now serves the current fictional callback sequence and all three matching ElevenLabs recordings. The video demonstrates a separate real local generation; see the deployment notes for provenance.*
 
 [Watch the 90-second English demo](deliverables/ghost-diary-demo.mp4) · [English captions](deliverables/ghost-diary-demo.en.srt) · [Editable video source](deliverables/ghost-diary-video-source.zip)
 
@@ -152,4 +152,4 @@ The [contest rules](https://dev.to/challenges/hacktoberfest-week4-2026-10-26) gi
 
 - **2026-10-31, before the deadline:** strengthened history callbacks and Gemma message packaging; recorded new fictional local `gemma3:4b` examples with complete candidate provenance; kept stale narration hidden; added regression tests and documentation. Committed and pushed as `ab97d3c`, then deployed as Sites version 3 on the user's subsequent request. New ElevenLabs work was excluded from this deployment.
 - **Post-deadline changes:** none made in this task. Future changes or commits after the cutoff must be listed here with their actual dates and scope.
-- **2026-10-31, before the deadline:** added approved ElevenLabs soft-whisper recordings for the three recorded examples, reused the original Windows speech pipeline for local entries, and produced a 90-second English narrated demo with captions and editable source. Verified 135 tests and both builds. This repository update does not deploy the hosted site.
+- **2026-10-31, before the deadline:** added approved ElevenLabs soft-whisper recordings for the three recorded examples, reused the original Windows speech pipeline for local entries, and produced a 90-second English narrated demo with captions and editable source. Verified 135 tests and both builds. Subsequently deployed as Sites version 4; live JavaScript and all three MP3s match the verified build. See [final release verification](docs/release-verification.md).

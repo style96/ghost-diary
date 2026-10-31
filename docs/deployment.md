@@ -1,6 +1,19 @@
 # Publication status
 
-## Latest deployment — 2026-10-31
+## Latest deployment — version 4, 2026-10-31
+
+Published successfully at **11:04:22 UTC / 12:04:22 Europe/Berlin** while preserving the existing public audience and domain bindings.
+
+- Live domain: https://ghostinthemachine.tech
+- GitHub application/video content: `2ff83576f7af59c76cbbd456315d7f468e194bc9`.
+- Sites source: `a00a9d05d1289b6aa3fc8930b387982cf1228042`, a normal merge preserving both histories; its tracked file tree was verified identical to that GitHub commit.
+- Saved version: `appgprj_6ae4b997b8808191b8a9827d4eb26129~appgver_71acb14e0c2c8191990f61f802618f64`.
+- Deployment: `appgdep_6ae5cb291d1081918e9fe801f64a4863`, status `succeeded`.
+- Archive SHA-256: `196f4472c1d50e441141b6f86d37ab07bb5a9361c531bedf6bd8901fa4b2fd6b`.
+
+At 11:04:46 UTC, the custom domain returned HTTP 200. Its `/assets/index-Blq2uZKr.js` matched the freshly built recorded bundle exactly. Every manifest sentence matched its selected Gemma insertion, and all three served MP3s returned 200 with SHA-256 values matching the repository audio. This brings the current ElevenLabs narration to the hosted demo. See [release verification](release-verification.md) for hashes and limits. Final documentation-only changes do not alter this runtime build.
+
+## Previous deployment — version 3, 2026-10-31
 
 Sites version **3** was deployed successfully at **08:42:45 UTC / 09:42:45 Europe/Berlin** on the user's explicit request.
 
