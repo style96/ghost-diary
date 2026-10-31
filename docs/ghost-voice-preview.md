@@ -1,7 +1,8 @@
 # Ghost voice and ink preview
 
-Feature branch: `codex/ghost-voice-ink`. This is a local feature preview; the
-production website has not been changed.
+The ghost voice and ink features were merged from `codex/ghost-voice-ink`
+into `main` and published at [ghostinthemachine.tech](https://ghostinthemachine.tech).
+The commands below run a local preview of that recorded experience.
 
 ```sh
 npm install

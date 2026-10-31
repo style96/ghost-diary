@@ -9,12 +9,38 @@ Built for [Hacktoberfest Open-Source AI Challenge Week 4: Ghost in the Machine](
 ## Two experiences, clearly separated
 
 - **Local app:** write your own diary, generate real interventions using Ollama + Gemma, compare with your original, restore, and export/import a backup.
-- **Recorded website:** explore three fictional diary pages and reveal genuine, previously generated Gemma outputs. It has no live inference or personal diary editor. The persistent banner identifies it as recorded.
+- **Recorded website:** explore three fictional diary pages, reveal genuine Gemma outputs with a short ink animation, and optionally hear the added sentence. It has no live inference or personal diary editor. The diary banner and explanatory page identify it as recorded.
 
 Source: [github.com/style96/ghost-diary](https://github.com/style96/ghost-diary).
 Public recorded demo: [ghostinthemachine.tech](https://ghostinthemachine.tech). DNS routing and HTTPS are active; details are in [deployment notes](docs/deployment.md).
 
-![Recorded example and real Gemma ghost ink](docs/screenshots/recorded-haunting.png)
+![Recorded diary with real Gemma ghost ink and the Hear the ghost button](docs/screenshots/recorded-haunting-voice.jpg)
+
+*Current public demo: fictional diary entries, genuine recorded Gemma text and optional recorded narration.*
+
+## Hear the ghost and watch the ink appear
+
+Select **Pass the night** to reveal the intervention. New words appear over about **1.2 seconds**; reduced-motion preferences show them immediately. Existing pages and the comparison view do not replay the animation.
+
+In the recorded demo, **Hear the ghost** plays the added sentence. Sound never autoplays. **Stop the ghost** rewinds it; restoring the page, switching entries or opening **How it haunts** stops playback too.
+
+The current voices are temporary recordings generated locally with Windows speech synthesis, then processed with lowered pitch and subtle echo. **Gemma generates the text, not the audio.** ElevenLabs voice generation is planned; it is not integrated in this version. The bundled recordings need no live TTS API call, and personal diary text is not sent to a speech service.
+
+Audio files, provenance and regeneration: [audio README](public/audio/README.md). The [voice manifest](src/demo/voices.json) must match the exact spoken sentence; stale audio is hidden after demo text changes. The local application animates new ink, but does not play unrelated demo recordings for personal entries.
+
+<details>
+<summary>Mobile recorded demo</summary>
+
+<img src="docs/screenshots/recorded-voice-mobile.jpg" alt="Mobile Ghost Diary with the Hear the ghost button" width="390">
+
+</details>
+
+<details>
+<summary>How it haunts</summary>
+
+![Current How it haunts tab; the recorded-demo CTA appears only on the diary tab](docs/screenshots/how-it-haunts-current.jpg)
+
+</details>
 
 ## Run the real local app
 
@@ -104,4 +130,3 @@ Behavioral tests cover original preservation, literal Unicode/markup, missing/am
 Original application code: [MIT](LICENSE). Gemma is **open-weight**, governed separately by the [Gemma Terms of Use](https://ai.google.dev/gemma/terms); its weights are not included in this repository. [Ollama](https://github.com/ollama/ollama) provides the local inference runtime. Interface icons are from [Lucide](https://lucide.dev/license). The original ghost illustration is inline SVG. Codex assisted development; the runtime diary AI is Gemma.
 
 Any changes made after the contest deadline will be documented here as post-deadline changes.
-

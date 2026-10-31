@@ -4,6 +4,11 @@ These three WAV files speak only the fictional Gemma interventions from
 `src/demo/recorded.json`. They are temporary preview narration, not Gemma audio
 and not ElevenLabs output.
 
+The public demo now includes **Hear the ghost** and **Stop the ghost** controls.
+ElevenLabs-generated replacement voices are planned, not yet implemented.
+
+![The recorded diary with the Hear the ghost control](../../docs/screenshots/recorded-haunting-voice.jpg)
+
 Generated on Windows using Microsoft Zira Desktop (`System.Speech`), then
 slowed, filtered and given quiet delayed layers using Python's standard library.
 No online audio service, cloned real-person voice, or personal diary text was used.
