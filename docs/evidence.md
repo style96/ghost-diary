@@ -1,6 +1,6 @@
 # Ghost Diary — evidence for the submission
 
-Status: local real inference, diary save/reopen, original comparison, restore and recorded public-demo flows verified. Thirty behavioral tests and typecheck pass; both production builds pass. Physically disconnected-network generation remains unverified.
+Status: local real inference, diary save/reopen, original comparison, restore and recorded public-demo flows verified. Thirty behavioral tests and typecheck pass; both production builds pass. On October 31, 2026, the project author reported successfully testing the local application with the internet connection disconnected. This is an author-reported manual test, not an agent-observed run.
 
 ## 1. Show that AI is essential
 
@@ -15,14 +15,14 @@ Verified: gemma3:4b; three real committed recorded input/output pairs in src/dem
 ## 2. Show the practical benefit of open innovation
 
 - Local privacy: demonstrate the browser using the loopback application server, which calls local Ollama. Check for external requests in the application flow. State the boundary accurately: local diary inference is local; the public host and optional DevRelay session sharing are separate internet services.
-- Offline use: after downloading dependencies and weights and caching required assets, run the local production app without internet connectivity and perform a NEW generation. Label this unverified until actually tested. A stopped Wi-Fi icon or screenshots alone are insufficient evidence.
+- Offline use: the project author confirmed successful operation after disconnecting the internet connection on October 31, 2026. No separate offline latency measurements or network capture were supplied.
 - Control: link the ghost instructions and configurable model name in source, explaining that users can change the behavior or choose another locally compatible model. Do not claim multiple models were tested unless they were.
 - Ownership: demonstrate preserving the original and exporting the diary; explain that continued local operation does not depend on a hosted model API account.
 - Cost: say “no per-request hosted API fee in local mode,” not “costs nothing.” Local hardware, electricity and domain renewal still exist.
 
 Gemma is open-weight with its own license terms. The application code's MIT license does not replace those terms.
 
-Verified boundaries: fixed loopback Ollama endpoint and Host/Origin guards tested; local production UI uses only packaged assets; both modes inspected without browser console warnings/errors. Backup round-trip and invalid/failed import rollback tested. Gemma terms linked in README. A full external network packet capture and a fresh physically offline generation have NOT been performed; omit claims that these were measured.
+Verified boundaries: fixed loopback Ollama endpoint and Host/Origin guards tested; local production UI uses only packaged assets; both modes inspected without browser console warnings/errors. Backup round-trip and invalid/failed import rollback tested. Gemma terms linked in README. Offline operation is confirmed by the project author's manual test reported above. A full external network packet capture has not been performed; do not claim one was measured.
 
 ## 3. Capture how it was built with DevRelay
 
@@ -47,3 +47,4 @@ Verified saved session: 1318, tool_name codex, 45 messages, published=false (dra
 7. Explain that the domain's public examples are recorded Gemma outputs and link the local source and setup.
 
 Suggested write-up thesis, to retain only after verification: “A ghost rewrites my diary, but the model never needs to send it away.”
+

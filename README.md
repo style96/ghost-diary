@@ -83,7 +83,7 @@ Browser diary (IndexedDB)
 
 In local mode, this app sends diary text only to the local Node server and local Ollama. No hosted model endpoint, third-party analytics, external fonts or API key is needed. Browser storage is **not encrypted** and is not a substitute for device security. Clearing browser data can erase your diary. Export a JSON backup and store it safely; backups contain plain text.
 
-With dependencies, model weights and the production build already installed, the architecture does not require an external service for inference. A physically disconnected-network generation has **not yet been verified** in this build; do not treat the architectural offline capability as a measured test result.
+With dependencies, model weights and the production build already installed, the local experience does not need an internet connection. On October 31, 2026, the project author reported testing the local application with the internet connection disconnected and confirmed that it continued working successfully.
 
 The public website is separately hosted and uses fictional recorded fixtures. DevRelay, when connected, shares a curated **development transcript**, not your personal diary. No per-request hosted AI fee is required locally; hardware, electricity and domain renewal still have costs.
 
@@ -104,3 +104,4 @@ Behavioral tests cover original preservation, literal Unicode/markup, missing/am
 Original application code: [MIT](LICENSE). Gemma is **open-weight**, governed separately by the [Gemma Terms of Use](https://ai.google.dev/gemma/terms); its weights are not included in this repository. [Ollama](https://github.com/ollama/ollama) provides the local inference runtime. Interface icons are from [Lucide](https://lucide.dev/license). The original ghost illustration is inline SVG. Codex assisted development; the runtime diary AI is Gemma.
 
 Any changes made after the contest deadline will be documented here as post-deadline changes.
+

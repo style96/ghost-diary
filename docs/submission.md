@@ -1,7 +1,7 @@
 ---
 title: "Ghost Diary: My Local AI Started Writing Between the Lines"
 published: false
-tags: devchallenge, hf26challenge
+tags: devchallenge, hf26challenge, ai, opensource
 ---
 
 *This is a submission for the [Hacktoberfest Open-Source AI Challenge Week 4: Ghost in the Machine](https://dev.to/challenges/hacktoberfest-week4-2026-10-26).*
@@ -22,7 +22,9 @@ The public experience replays genuine local Gemma outputs on three fictional ent
 
 [Try the recorded Ghost Diary demo](https://ghostinthemachine.tech). [Run the real local application](https://github.com/style96/ghost-diary#run-the-real-local-app).
 
-The first recorded page describes a yellow umbrella, a chipped blue cup and three knocks from the kitchen. Gemma added:
+To try it, open the demo, choose a page, select **Pass the night**, then use **See what changed**. No account or model download is needed to explore the recorded examples.
+
+The first recorded page describes a yellow umbrella, a chipped blue cup and three knocks from the kitchen. It ends with the diarist insisting they live alone. Gemma added:
 
 > Someone else was reading the same page.
 
@@ -42,7 +44,32 @@ I started with a 1B model. It ran, but its prose was weak, so I tested the 4B va
 
 The model now selects a target from exact, unique sentences in the original and returns a structured edit. The application checks that output again before applying it. The original and ghost version remain separate. Late responses cannot overwrite a newer revision of the page.
 
+Here is the actual edit saved for that first recorded page:
+
+```json
+{
+  "kind": "insertAfter",
+  "target": "I live alone, after all.",
+  "text": "Someone else was reading the same page."
+}
+```
+
+That boundary matters more than asking the model to behave. A missing or ambiguous target is rejected; it never becomes permission to rewrite the whole page. If local generation fails, the app shows an error and keeps the original. It does not substitute a recorded response.
+
 No vector database or agent framework was necessary for this one-day build. The current entry and up to three recent entries supply the ghost's context. Codex helped build the software; Gemma performs the actual diary intervention.
+
+To run the live version, install Node.js 24+ and Ollama, then:
+
+```sh
+git clone https://github.com/style96/ghost-diary.git
+cd ghost-diary
+ollama pull gemma3:4b
+npm install
+npm run build
+npm start
+```
+
+Keep Ollama running and open `http://127.0.0.1:3001`. Write and save a page, then pass the night. The repository documents behavioral checks for original preservation, invalid model edits, stale responses and backup recovery.
 
 ## Why Does Open Innovation Matter?
 
@@ -50,7 +77,7 @@ Diary writing is personal. A local model lets the central interaction happen wit
 
 The openness also changes who gets to shape the ghost. Its instructions are in the repository. The model name is configurable. Someone can change its tone, experiment with another compatible local model, or keep running their copy without a provider account. The diary can be exported as a plain JSON backup.
 
-There is no per-request hosted AI fee in local mode, though hardware and electricity are real costs. With the dependencies and weights downloaded, the design has no external inference dependency. I have not yet completed a physically disconnected-network test, so I am not presenting offline operation as a measured result.
+There is no per-request hosted AI fee in local mode, though hardware and electricity are real costs. I also tested the local application with my internet connection disconnected, and it continued working. Once the dependencies, model weights and production build are installed, the local experience does not need an internet connection.
 
 There are boundaries: browser storage is not encrypted, and clearing it can delete the diary. The public website is separately hosted and serves fictional recorded data. Gemma is open-weight under its own license; the application's MIT license does not change the model terms.
 
@@ -62,11 +89,25 @@ I saved a curated development transcript with DevRelay: the design discussion, l
 
 {% agent_session 1318 %}
 
-[View the Codex development session](https://dev.to/agent_sessions/ghost-diary-building-a-local-gemma-haunted-notebook-with-codex-rtstae). This session is currently a draft owned by the submission author; review its visibility when publishing the article.
+[View the Codex development session](https://dev.to/agent_sessions/ghost-diary-building-a-local-gemma-haunted-notebook-with-codex-rtstae).
+
+## The Spirit of It
+
+The moment I wanted is in that first example: “I live alone, after all.” Then another voice answers on the same page. The notebook becomes evidence against its own author.
+
+There is more to explore. Some recorded lines are less specific to the diary than I would like. Next I would evaluate how often the ghost uses a concrete detail from earlier entries, while keeping the same small, reversible edit boundary.
 
 ## Prize Categories
 
 - **Best Use of Gemma:** Gemma 3 4B generates the diary interventions locally through Ollama.
 - **Best Use of a .tech Domain:** the recorded public experience is live at [ghostinthemachine.tech](https://ghostinthemachine.tech), a domain claimed through Hacktoberfest.
 
-<!-- Final publication checks: review agent-session visibility; remove any remaining preparation comments; publish in English with required tags before deadline. -->
+## Related Reading
+
+Two related DEV projects offer useful context for this build:
+
+- [Rahul Talreja](https://dev.to/rahul_talreja_946a8621542) describes local inference and retrieval in [Building a Private RAG System: Lessons from a Local-First AI Journal](https://dev.to/rahul_talreja_946a8621542/building-a-private-rag-system-lessons-from-a-local-first-ai-journal-2dol). Ghost Diary keeps its context smaller: the current page and a few recent originals.
+- [Tanvi Malewar](https://dev.to/tanvimalewar) describes a small Gemma/Ollama application and its model limitations in [I built a local AI that tells me to go outside](https://dev.to/tanvimalewar/i-built-a-local-ai-that-tells-me-to-go-outside-gemma-ollama-works-offline-2983). Ghost Diary likewise gives the model one narrow task, then validates its result.
+
+*AI disclosure: Codex assisted the application development and preparation of this post. Gemma generates the diary interventions.*
+
